@@ -21,6 +21,17 @@
 
 (ansi-color-for-comint-mode-on)
 
+;; Visual Modifications
+(setq default-tab-width 2)
+(setq x-stretch-cursor t)
+
+;; Enable some modes
+(dolist (mode '(column-number-mode
+                global-linum-mode
+                toggle-frame-maximized))
+  (when (fboundp mode)
+    (funcall mode)))
+
 ;; Mac specific changes
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
