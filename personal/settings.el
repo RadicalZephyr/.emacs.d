@@ -35,3 +35,72 @@
 ;; School specific changes
 (when (file-accessible-directory-p "/home/shannog")
   (add-to-list 'exec-path "/home/shannog/local/bin"))
+
+;; Packages and Stuff
+(prelude-require-packages '(;; Great utilities
+                            color-theme
+                            magit
+                            smart-tab
+                            smartparens
+                            exec-path-from-shell
+
+                            ;; Clojure
+                            ac-cider-compliment
+                            cider
+                            clojure-mode
+                            clojure-test-mode
+                            clojure-cheatsheet
+                            nrepl
+                            nrepl-ritz
+                            paredit
+
+                            ;; PHP
+                            flymake-php
+                            php-mode
+
+                            ;; Ruby
+                            inf-ruby
+                            rinari
+                            yari
+                            ruby-tools
+
+                            ;; flycheck
+                            flycheck
+                            flycheck-tip
+                            flycheck-color-mode-line
+
+                            ;; auto-complete sources
+                            ac-c-headers
+                            ac-etags
+                            ac-inf-ruby
+                            ac-ispell
+                            ac-math
+                            ac-octave
+
+                            ;; Other cool stuff
+                            android-mode
+                            batch-mode
+                            erefactor
+                            gnuplot
+                            csharp-mode
+                            fsharp-mode
+                            markdown-mode
+                            markdown-mode+))
+
+;; Lisp mode setups
+(defun ez-paredit-no-smartparens ()
+  (smartparens-mode -1)
+  (paredit-mode t))
+
+(add-hook 'emacs-lisp-mode-hook 'ez-paredit-no-smartparens)
+(add-hook 'scheme-mode-hook 'ez-paredit-no-smartparens)
+(add-hook 'lisp-mode-hook 'ez-paredit-no-smartparens)
+(add-hook 'clojure-mode-hook 'ez-paredit-no-smartparens)
+
+(add-hook 'text-mode-hook (lambda ()
+                            (smartparens-mode -1)
+                            (flyspell-mode 1)))
+
+;; Android mode setup
+(require 'android-mode)
+(setq android-mode-sdk-dir (concat (getenv "HOME") "/local/android-sdk-linux"))
