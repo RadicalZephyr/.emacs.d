@@ -1,4 +1,3 @@
-
 (dolist (auto-mode-pair '(("\\.php\\'" . php-mode)
                           ("\\.rkt\\'" . scheme-mode)
                           ("\\.md\\'" . markdown-mode)
@@ -9,9 +8,6 @@
 (setq completion-ignored-extensions
       (append '(".ali" ".exe" ".beam")
               completion-ignored-extensions))
-
-(require 'ido)
-(ido-mode t)
 
 (setq-default indent-tabs-mode nil)
 
