@@ -10,7 +10,7 @@
 ;;; Commentary:
 
 ;; We dispense with most of the point and click UI, reduce the startup noise,
-;; configure smooth scolling and a nice theme that's easy on the eyes (zenburn).
+;; configure smooth scrolling and a nice theme that's easy on the eyes (zenburn).
 
 ;;; License:
 
