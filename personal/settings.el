@@ -1,3 +1,11 @@
+;;; settings --- My personal emacs settings
+
+;;; Commentary:
+
+;; Setup up my personal modifications
+
+;;; Code:
+
 (dolist (auto-mode-pair '(("\\.php\\'" . php-mode)
                           ("\\.rkt\\'" . scheme-mode)
                           ("\\.md\\'" . markdown-mode)
@@ -16,6 +24,8 @@
 (put 'narrow-to-region 'disabled nil)
 
 (ansi-color-for-comint-mode-on)
+
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; Visual Modifications
 (setq default-tab-width 2)
@@ -94,6 +104,9 @@
                             markdown-mode
                             markdown-mode+))
 
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
 ;; Lisp mode setups
 (defun ez-paredit-no-smartparens ()
   (smartparens-mode -1)
@@ -111,3 +124,5 @@
 ;; Android mode setup
 (require 'android-mode)
 (setq android-mode-sdk-dir (concat (getenv "HOME") "/local/android-sdk-linux"))
+
+;;; settings.el ends here
