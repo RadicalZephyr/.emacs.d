@@ -57,19 +57,10 @@
 (prelude-require-packages '(;; Great utilities
                             color-theme
                             magit
+                            paredit
                             smart-tab
                             smartparens
                             exec-path-from-shell
-
-                            ;; Clojure
-                            ac-cider-compliment
-                            cider
-                            clojure-mode
-                            clojure-test-mode
-                            clojure-cheatsheet
-                            nrepl
-                            nrepl-ritz
-                            paredit
 
                             ;; PHP
                             flymake-php
