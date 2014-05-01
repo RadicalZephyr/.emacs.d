@@ -28,7 +28,7 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; Visual Modifications
-(setq default-tab-width 2)
+(setq tab-width 2)
 (setq x-stretch-cursor t)
 
 ;; Enable some modes
@@ -118,5 +118,7 @@ Meant for use with all Lisp modes"
 ;; Android mode setup
 (require 'android-mode)
 (setq android-mode-sdk-dir (concat (getenv "HOME") "/local/android-sdk-linux"))
+
+(require 'magit)
 
 ;;; settings.el ends here
