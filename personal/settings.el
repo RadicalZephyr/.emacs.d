@@ -108,17 +108,17 @@
 (exec-path-from-shell-initialize)
 
 ;; Lisp mode setups
-(defun ez-paredit-no-smartparens ()
+(defun radz-paredit-no-smartparens ()
     "Deactivate smartparens in favor of paredit mode.
 
 Meant for use with all Lisp modes"
     (smartparens-mode -1)
     (paredit-mode t))
 
-(add-hook 'emacs-lisp-mode-hook 'ez-paredit-no-smartparens)
-(add-hook 'scheme-mode-hook 'ez-paredit-no-smartparens)
-(add-hook 'lisp-mode-hook 'ez-paredit-no-smartparens)
-(add-hook 'clojure-mode-hook 'ez-paredit-no-smartparens)
+(add-hook 'emacs-lisp-mode-hook 'radz-paredit-no-smartparens)
+(add-hook 'scheme-mode-hook 'radz-paredit-no-smartparens)
+(add-hook 'lisp-mode-hook 'radz-paredit-no-smartparens)
+(add-hook 'clojure-mode-hook 'radz-paredit-no-smartparens)
 
 (add-hook 'text-mode-hook (lambda ()
                             (smartparens-mode -1)
