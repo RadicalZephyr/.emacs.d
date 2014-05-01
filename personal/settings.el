@@ -109,8 +109,11 @@
 
 ;; Lisp mode setups
 (defun ez-paredit-no-smartparens ()
-  (smartparens-mode -1)
-  (paredit-mode t))
+    "Deactivate smartparens in favor of paredit mode.
+
+Meant for use with all Lisp modes"
+    (smartparens-mode -1)
+    (paredit-mode t))
 
 (add-hook 'emacs-lisp-mode-hook 'ez-paredit-no-smartparens)
 (add-hook 'scheme-mode-hook 'ez-paredit-no-smartparens)
