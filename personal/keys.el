@@ -1,3 +1,11 @@
+;;; keys --- My personal keybindings
+
+;;; Commentary:
+
+;; Lots of little personalizations that I've built up over the years
+
+;;; Code:
+
 (global-set-key "%" 'goto-match-paren)
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 (global-set-key "\C-x\C-o" 'other-window)
@@ -6,9 +14,6 @@
 (global-set-key "\C-cg" 'magit-status)
 (global-set-key "\C-cw" 'what-face)
 (global-set-key "\C-c-u" 'unfill-paragraph)
-
-;; Probably shouldn't be here, but what the hell
-(global-set-key "\C-c\C-l" 'edebug-defun)
 
 (global-set-key [kp-subtract] 'undo)
 (global-set-key [insert]    'overwrite-mode)
@@ -42,3 +47,5 @@
 (global-set-key (kbd "<C-down>") (lambda ()
                                  (interactive)
                                  (scroll-up 1)))
+
+;;; keys.el ends here
