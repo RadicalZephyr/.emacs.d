@@ -19,6 +19,8 @@
 
 (setq-default indent-tabs-mode nil)
 
+(setq prelude-guru nil)
+
 (desktop-save-mode)
 
 (put 'narrow-to-region 'disabled nil)
