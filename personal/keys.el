@@ -10,10 +10,8 @@
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 (global-set-key "\C-x\C-o" 'other-window)
 
-(global-set-key (kbd "\C-ch") 'helm-mini)
-(global-set-key "\C-cg" 'magit-status)
-(global-set-key "\C-cw" 'what-face)
-(global-set-key "\C-c-u" 'unfill-paragraph)
+(global-set-key "\C-ccu" 'unfill-paragraph)
+(global-set-key "\C-ccf" 'desktop-change-dir)
 
 (global-set-key [kp-subtract] 'undo)
 (global-set-key [insert]    'overwrite-mode)
