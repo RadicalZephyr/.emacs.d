@@ -93,10 +93,16 @@
                             csharp-mode
                             fsharp-mode
                             markdown-mode
-                            markdown-mode+))
+                            markdown-mode+
+                            yasnippet
+                            java-snippets))
 
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
+
+;; Yasnippet setups
+(require 'yasnippet)
+(yas-global-mode t)
 
 ;; Lisp mode setups
 (defun radz-paredit-no-smartparens ()
