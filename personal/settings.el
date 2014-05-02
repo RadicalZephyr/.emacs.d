@@ -41,9 +41,7 @@
 ;; Mac specific changes
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
-  (setenv "GIT_SSH" "/usr/bin/ssh")
-  (setq special-display-regexps
-        (remove "[ ]?\\*[hH]elp.*" special-display-regexps)))
+  (setenv "GIT_SSH" "/usr/bin/ssh"))
 
 ;; Windows specific changes
 (when (eq system-type 'windows-nt)
