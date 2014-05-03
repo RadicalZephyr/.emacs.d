@@ -22,8 +22,6 @@
 (global-set-key "\C-z" 'compile)
 (global-set-key "\C-c/" 'comment-or-uncomment-region)
 
-(global-set-key "\C-cf" 'desktop-change-dir)
-
 (global-set-key [f12] 'man)
 
 ;; Swap regex-isearch and isearch
