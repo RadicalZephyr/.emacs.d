@@ -21,17 +21,31 @@
 
 (setq prelude-guru nil)
 
+;; Desktop mode enhancements
 (desktop-save-mode)
+(dolist (pattern '("irc\..*"
+                   "#.+"))
+  (add-to-list 'desktop-clear-preserve-buffers
+               pattern))
 
+(add-hook 'desktop-no-desktop-file-hook
+          (lambda ()
+            (dired default-directory)))
+
+(add-hook 'dired-load-hook
+          (lambda ()
+            (load "dired-x")))
+
+;; Undisable some commands
 (put 'narrow-to-region 'disabled nil)
-
-(ansi-color-for-comint-mode-on)
-
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+(put 'downcase-region 'disabled nil)
 
 ;; Visual Modifications
 (setq tab-width 2)
 (setq x-stretch-cursor t)
+(setq visible-bell t)
+(ansi-color-for-comint-mode-on)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; Enable some modes
 (dolist (mode '(column-number-mode
@@ -39,6 +53,14 @@
                 toggle-frame-maximized))
   (when (fboundp mode)
     (funcall mode)))
+
+;; Disable some modes
+(dolist (mode '(scroll-bar-mode
+                tool-bar-mode
+                menu-bar-mode))
+  (when (fboundp mode)
+    (funcall mode -1)))
+
 
 ;; Mac specific changes
 (when (eq system-type 'darwin)
@@ -103,6 +125,14 @@
 ;; Yasnippet setups
 (require 'yasnippet)
 (yas-global-mode t)
+
+(smartparens-global-mode t)
+
+;; Csharp setups
+(add-hook 'csharp-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode t)
+            (set (make-local-variable 'compile-command) "xbuild")))
 
 ;; Lisp mode setups
 (defun radz-paredit-no-smartparens ()
