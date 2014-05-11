@@ -114,6 +114,7 @@
                             gnuplot
                             csharp-mode
                             fsharp-mode
+                            groovy-mode
                             markdown-mode
                             markdown-mode+
                             yasnippet
@@ -137,6 +138,10 @@
           (lambda ()
             (setq indent-tabs-mode t)
             (set (make-local-variable 'compile-command) "xbuild")))
+
+;; Groovy setups
+
+(require 'groovy-mode)
 
 ;; Lisp mode setups
 (defun radz-paredit-no-smartparens ()
