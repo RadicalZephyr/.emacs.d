@@ -90,6 +90,10 @@
                             yari
                             ruby-tools
 
+                            ;; R
+                            ess
+                            ess-smart-underscore
+
                             ;; flycheck
                             flycheck
                             flycheck-tip
@@ -123,6 +127,10 @@
 (yas-global-mode t)
 
 (smartparens-global-mode t)
+
+;; ESS setups
+(require 'ess)
+(require 'ess-site)
 
 ;; Csharp setups
 (add-hook 'csharp-mode-hook
