@@ -23,8 +23,8 @@
 
 ;; Desktop mode enhancements
 (desktop-save-mode)
-(dolist (pattern '("irc\..*"
-                   "#.+"))
+(dolist (pattern '("irc\..*" ; Keep irc buffers when
+                   "#.+"))   ; switching desktops
   (add-to-list 'desktop-clear-preserve-buffers
                pattern))
 
