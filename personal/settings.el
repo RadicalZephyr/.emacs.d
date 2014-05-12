@@ -6,6 +6,9 @@
 
 ;;; Code:
 
+;; Set my user-init-file to be this file
+(setq prelude-user-init-file buffer-file-name)
+
 (dolist (auto-mode-pair '(("\\.php\\'" . php-mode)
                           ("\\.rkt\\'" . scheme-mode)
                           ("\\.md\\'" . markdown-mode)
