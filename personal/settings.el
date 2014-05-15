@@ -182,6 +182,13 @@ Meant for use with all Lisp modes"
 (setq jde-import-auto-sort t
       jde-import-sorted-groups 'gor)
 
+(dolist (group-reg '(;; This is a clever regex that matches all but
+                     ;; the classname of an import. Grouping for
+                     ;; everybody!
+                     ("\\(\\([[:alnum:]]+\\.?\\)\\{1,3\\}\\)\\." . 1)))
+  (add-to-list 'jde-import-group-of-rules
+               group-reg t))
+
 ;; Add directories relative to HOME to classpath
 (dolist (path
          '("local/android-sdk-linux/platforms/android-17/android.jar"))
