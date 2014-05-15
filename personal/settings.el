@@ -180,6 +180,15 @@ Meant for use with all Lisp modes"
 (load "jde")
 
 (setq jde-import-auto-sort t
-      jde-import-sorted-groups t)
+      jde-import-sorted-groups 'gor)
+
+;; Add directories relative to HOME to classpath
+(dolist (path
+         '("local/android-sdk-linux/platforms/android-17/android.jar"))
+  (let* ((home (file-name-as-directory
+                (expand-file-name "~")))
+         (fullpath (concat home path)))
+    (add-to-list 'jde-global-classpath
+                 fullpath)))
 
 ;;; settings.el ends here
