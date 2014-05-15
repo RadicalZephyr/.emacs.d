@@ -153,11 +153,11 @@
 
 ;; Lisp mode setups
 (defun radz-paredit-no-smartparens ()
-    "Deactivate smartparens in favor of paredit mode.
+  "Deactivate smartparens in favor of paredit mode.
 
 Meant for use with all Lisp modes"
-    (smartparens-mode -1)
-    (paredit-mode t))
+  (smartparens-mode -1)
+  (paredit-mode t))
 
 (add-hook 'emacs-lisp-mode-hook 'radz-paredit-no-smartparens)
 (add-hook 'scheme-mode-hook 'radz-paredit-no-smartparens)
