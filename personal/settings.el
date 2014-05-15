@@ -174,4 +174,12 @@ Meant for use with all Lisp modes"
 
 (require 'magit)
 
+(add-to-list 'load-path
+             (concat (file-name-as-directory prelude-personal-dir)
+                     "jdee-2.4.1/lisp"))
+(load "jde")
+
+(setq jde-import-auto-sort t
+      jde-import-sorted-groups t)
+
 ;;; settings.el ends here
