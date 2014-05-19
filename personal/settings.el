@@ -13,8 +13,8 @@
                           ("\\.rkt\\'" . scheme-mode)
                           ("\\.md\\'" . markdown-mode)
                           ("\\.markdown\\'" . markdown-mode)
-                          ("\.groovy$" . groovy-mode)))
-
+                          ("\.groovy$" . groovy-mode)
+                          ("\.gradle$" . groovy-mode)))
   (add-to-list 'auto-mode-alist
                auto-mode-pair))
 
