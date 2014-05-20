@@ -198,4 +198,8 @@ Meant for use with all Lisp modes"
     (add-to-list 'jde-global-classpath
                  fullpath)))
 
+(add-to-list 'compilation-error-regexp-alist
+             '("^:[[:alpha:]]*\\(/.*?\\):\\([[:digit:]]+\\): ?\\(error\\)"
+               1 2 nil 2 1 (3 compilation-error-face)))
+
 ;;; settings.el ends here
