@@ -181,7 +181,7 @@ Meant for use with all Lisp modes"
 (load "jde")
 
 (setq  jde-import-auto-sort t
-       jde-import-auto-sort-function (lambda ()
+       jde-import-auto-sort-function (lambda () ;; Force reorganizing
                                        (jde-import-organize t))
        jde-import-blank-line-between-groups t
        jde-import-sorted-groups 'asc)
