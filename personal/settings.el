@@ -180,8 +180,11 @@ Meant for use with all Lisp modes"
                      "jdee-2.4.1/lisp"))
 (load "jde")
 
-(setq jde-import-auto-sort t
-      jde-import-sorted-groups 'gor)
+(setq  jde-import-auto-sort t
+       jde-import-auto-sort-function (lambda ()
+                                       (jde-import-organize t))
+       jde-import-blank-line-between-groups t
+       jde-import-sorted-groups 'asc)
 
 (dolist (group-reg '(;; This is a clever regex that matches all but
                      ;; the classname of an import. Grouping for
