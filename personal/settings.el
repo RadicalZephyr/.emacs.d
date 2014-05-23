@@ -167,12 +167,14 @@ Meant for use with all Lisp modes"
                             (smartparens-mode -1)
                             (flyspell-mode 1)))
 
-;; Android mode setup
+;; Android mode setups
 (require 'android-mode)
-(setq android-mode-sdk-dir (concat (getenv "HOME") "/local/android-sdk-linux"))
+(setq android-mode-sdk-dir (concat (getenv "HOME")
+                                   "/local/android-sdk-linux"))
 
 (require 'magit)
 
+;; JDEE setups
 (add-to-list 'load-path
              (concat (file-name-as-directory prelude-personal-dir)
                      "jdee-2.4.1/lisp"))
