@@ -116,7 +116,6 @@
                             ac-octave
 
                             ;; Other cool stuff
-                            android-mode
                             batch-mode
                             erefactor
                             gnuplot
@@ -197,6 +196,10 @@ Meant for use with all Lisp modes"
          (fullpath (concat home path)))
     (add-to-list 'jde-global-classpath
                  fullpath)))
+
+;; Setup android mode to work with gradle
+(setq android-mode-builder 'gradle
+      android-mode-root-file "build.gradle")
 
 (add-to-list 'compilation-error-regexp-alist
              '("^:[[:alpha:]]*\\(/.*?\\):\\([[:digit:]]+\\): ?\\(error\\)"
