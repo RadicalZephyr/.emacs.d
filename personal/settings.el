@@ -186,7 +186,7 @@ Meant for use with all Lisp modes"
 (dolist (group-reg '(;; This is a clever regex that matches all but
                      ;; the classname of an import. Grouping for
                      ;; everybody!
-                     ("\\(\\([[:alnum:]]+\\.?\\)\\{1,3\\}\\)\\." . 1)))
+                     ("^\\(\\([[:alnum:]]+\\.?\\)\\{1,3\\}\\)\\." . 1)))
   (add-to-list 'jde-import-group-of-rules
                group-reg t))
 
