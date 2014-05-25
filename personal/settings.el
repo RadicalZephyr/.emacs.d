@@ -174,6 +174,12 @@ Meant for use with all Lisp modes"
 
 (require 'magit)
 
+;; CC-mode setups
+(let ((indent-tabs '((c-offsets-alist
+                      (case-label . +)))))
+  (dolist (style '("user" "k&r" "java")) ;; Update some styles to
+    (c-add-style style indent-tabs)))    ;; indent the case labels
+
 ;; JDEE setups
 (add-to-list 'load-path
              (concat (file-name-as-directory prelude-personal-dir)
