@@ -203,8 +203,7 @@ Meant for use with all Lisp modes"
                  fullpath)))
 
 ;; Setup android mode to work with gradle
-(setq android-mode-builder 'gradle
-      android-mode-root-file "build.gradle")
+(setq android-mode-builder 'gradle)
 
 (add-to-list 'compilation-error-regexp-alist
              '("^:[[:alpha:]]*\\(/.*?\\):\\([[:digit:]]+\\): ?\\(error\\)"
