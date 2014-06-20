@@ -45,7 +45,7 @@
 
 ;; Visual Modifications
 (blink-cursor-mode 1)
-(setq tab-width 2)
+(setq default-tab-width 2)
 (setq x-stretch-cursor t)
 (setq visible-bell t)
 (ansi-color-for-comint-mode-on)
