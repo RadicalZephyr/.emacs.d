@@ -14,7 +14,8 @@
                           ("\\.md\\'" . markdown-mode)
                           ("\\.markdown\\'" . markdown-mode)
                           ("\.groovy$" . groovy-mode)
-                          ("\.gradle$" . groovy-mode)))
+                          ("\.gradle$" . groovy-mode)
+                          ("\\.xtm$" . extempore-mode)))
   (add-to-list 'auto-mode-alist
                auto-mode-pair))
 
@@ -214,5 +215,8 @@ Meant for use with all Lisp modes"
 (add-to-list 'compilation-error-regexp-alist
              '("^:[[:alpha:]]*\\(/.*?\\):\\([[:digit:]]+\\): ?\\(error\\)"
                1 2 nil 2 1 (3 compilation-error-face)))
+
+(setq user-extempore-directory
+      "/usr/local/Cellar/extempore/0.53/")
 
 ;;; settings.el ends here
