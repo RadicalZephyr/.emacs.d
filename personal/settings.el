@@ -67,7 +67,6 @@
   (when (fboundp mode)
     (funcall mode -1)))
 
-
 ;; Mac specific changes
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
@@ -76,10 +75,6 @@
 ;; Windows specific changes
 (when (eq system-type 'windows-nt)
   (setq magit-git-executable "C:\\Program Files (x86)\\Git\\bin\\git.exe"))
-
-;; School specific changes
-(when (file-accessible-directory-p "/home/shannog")
-  (add-to-list 'exec-path "/home/shannog/local/bin"))
 
 ;; Packages and Stuff
 (prelude-require-packages '(;; Great utilities
