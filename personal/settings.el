@@ -76,6 +76,13 @@
 (when (eq system-type 'windows-nt)
   (setq magit-git-executable "C:\\Program Files (x86)\\Git\\bin\\git.exe"))
 
+;; ERC Settings
+(setq erc-nick "geoffs")
+(setq erc-fill-column 72)
+(setq erc-autojoin-channels-alist
+      '(("freenode.net" "#clojure" "#emacs"
+         "#wwu-alumni" "#wwucs" "#wwu-devops")))
+
 ;; Packages and Stuff
 (prelude-require-packages '(;; Great utilities
                             color-theme
