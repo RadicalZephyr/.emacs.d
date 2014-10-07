@@ -51,7 +51,7 @@
 (setq visible-bell t)
 (ansi-color-for-comint-mode-on)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 150)
 
 ;; Enable some modes
 (dolist (mode '(column-number-mode
