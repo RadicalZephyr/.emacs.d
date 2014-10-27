@@ -184,6 +184,7 @@ Meant for use with all Lisp modes"
 
 (add-hook 'text-mode-hook (lambda ()
                             (smartparens-mode -1)
+                            (auto-fill-mode 1)
                             (flyspell-mode 1)))
 
 ;; Android mode setups
