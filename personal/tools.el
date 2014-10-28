@@ -165,3 +165,8 @@ vi style of % jumping to matching brace."
       (progn
         (goto-char (point-max))
         (insert "\n" template " {\n\n  return 0;\n}")))))
+
+(defun minify-to-buffer ()
+  (interactive "")
+  (with-output-to-temp-buffer "*Minified Lisp*"
+    (print (read (buffer-string)))))
