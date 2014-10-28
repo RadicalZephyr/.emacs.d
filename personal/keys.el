@@ -12,6 +12,7 @@
 
 (global-set-key "\C-ccu" 'unfill-paragraph)
 (global-set-key "\C-ccf" 'desktop-change-dir)
+(global-set-key (kbd "C-c c b") 'ibuffer)
 
 (global-set-key [kp-subtract] 'undo)
 (global-set-key [insert]    'overwrite-mode)
