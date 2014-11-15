@@ -73,7 +73,7 @@
                                 (define-key tuareg-mode-map (kbd "C-c C-s")
                                   'utop)
                                 (setq compile-command
-                                      "opam config exec corebuild "))))
+                                      "opam config exec corebuild -- "))))
 
 ;; Setup merlin completions company is used by default in prelude
 (add-to-list 'company-backends 'merlin-company-backend)
