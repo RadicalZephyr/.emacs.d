@@ -143,8 +143,12 @@ The function is suitable for `erc-after-connect'."
                             groovy-mode
                             markdown-mode
                             markdown-mode+
+
+                            ;; Snippets!!
                             yasnippet
-                            java-snippets))
+                            java-snippets
+                            clojure-snippets
+                            ))
 
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
