@@ -7,33 +7,33 @@
 ;;; Code:
 
 (global-set-key "%" 'goto-match-paren)
-(global-set-key "\C-x\C-b" 'switch-to-buffer)
-(global-set-key "\C-x\C-o" 'other-window)
+(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
+(global-set-key (kbd "C-x C-o") 'other-window)
 
-(global-set-key "\C-ccu" 'unfill-paragraph)
-(global-set-key "\C-ccf" 'desktop-change-dir)
+(global-set-key (kbd "C-c c u") 'unfill-paragraph)
+(global-set-key (kbd "C-c c f") 'desktop-change-dir)
 (global-set-key (kbd "C-c c b") 'ibuffer)
 
 (global-set-key [kp-subtract] 'undo)
 (global-set-key [insert]    'overwrite-mode)
 (global-set-key [kp-insert] 'overwrite-mode)
 
-(global-set-key "\M-n" 'goto-line)
+(global-set-key (kbd "M-n") 'goto-line)
 
-(global-set-key "\C-z" 'compile)
-(global-set-key "\C-c/" 'comment-or-uncomment-region)
+(global-set-key (kbd "C-z") 'compile)
+(global-set-key (kbd "C-c /") 'comment-or-uncomment-region)
 
 (global-set-key [f12] 'man)
 
 ;; Swap regex-isearch and isearch
-(global-set-key "\C-r" 'isearch-backward-regexp)
-(global-set-key "\C-s" 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
 
-(global-set-key "\C-\M-r" 'isearch-backward)
-(global-set-key "\C-\M-s" 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
 
 ;; Swap line upwards
-(global-set-key "\C-ct" (lambda ()
+(global-set-key (kbd "C-c t") (lambda ()
                            (interactive)
                            (transpose-lines -1)))
 
