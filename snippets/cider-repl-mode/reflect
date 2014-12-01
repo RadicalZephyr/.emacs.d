@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+# name: reflect
+# key: reflect
+# --
+(require '[clojure.reflect :refer [reflect]]
+         '[clojure.pprint :refer [print-table]])
+(print-table (:members (reflect $1)))
