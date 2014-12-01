@@ -53,6 +53,12 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (set-face-attribute 'default nil :height 150)
 
+;; Scrolling settings
+
+(setq scroll-margin 5
+      scroll-conservatively 10
+      scroll-preserve-screen-position nil)
+
 ;; Enable some modes
 (dolist (mode '(column-number-mode
                 global-linum-mode
