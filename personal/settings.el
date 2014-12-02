@@ -113,6 +113,11 @@ The function is suitable for `erc-after-connect'."
                             smartparens
                             exec-path-from-shell
 
+                            ;; Clojure stuff
+                            clj-refactor
+                            cljsbuild-mode
+                            clojure-cheatsheet
+
                             ;; PHP
                             flymake-php
                             php-mode
