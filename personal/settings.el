@@ -132,14 +132,6 @@ The function is suitable for `erc-after-connect'."
                             flycheck-tip
                             flycheck-color-mode-line
 
-                            ;; auto-complete sources
-                            ac-c-headers
-                            ac-etags
-                            ac-inf-ruby
-                            ac-ispell
-                            ac-math
-                            ac-octave
-
                             ;; Other cool stuff
                             batch-mode
                             erefactor
