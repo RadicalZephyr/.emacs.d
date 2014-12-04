@@ -166,6 +166,7 @@ The function is suitable for `erc-after-connect'."
 (require 'clojure-mode)
 
 (define-clojure-indent
+  (updating-coll-by 'defun)
   (defroutes 'defun)
   (GET 2)
   (POST 2)
