@@ -162,7 +162,7 @@ The function is suitable for `erc-after-connect'."
 
 (smartparens-global-mode t)
 
-;; Clojure indentation setups
+;; Clojure  setups
 (require 'clojure-mode)
 
 (define-clojure-indent
@@ -174,6 +174,12 @@ The function is suitable for `erc-after-connect'."
   (HEAD 2)
   (ANY 2)
   (context 2))
+
+(require 'clj-refactor)
+
+(add-hook 'clojure-mode-hook (lambda ()
+                               (clj-refactor-mode 1)
+                               (cljr-add-keybindings-with-prefix "C-c C-s")))
 
 ;; ESS setups
 (require 'ess)
