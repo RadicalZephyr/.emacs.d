@@ -112,6 +112,7 @@ The function is suitable for `erc-after-connect'."
                             smart-tab
                             smartparens
                             exec-path-from-shell
+                            lentic
 
                             ;; Clojure stuff
                             clj-refactor
@@ -152,6 +153,8 @@ The function is suitable for `erc-after-connect'."
                             java-snippets
                             clojure-snippets
                             ))
+
+(require 'lentic)
 
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
