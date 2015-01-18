@@ -242,6 +242,14 @@ Meant for use with all Lisp modes"
        jde-import-blank-line-between-groups t
        jde-import-sorted-groups 'asc)
 
+(setq jde-mode-line-format '("-" mode-line-mule-info mode-line-modified mode-line-frame-identification mode-line-buffer-identification " " global-mode-string
+                             (line-number-mode "(%l,")
+                             (column-number-mode "%c)")
+                             (jde-which-method-mode
+                              ("  " jde-which-method-format "  "))
+                             "%[(" mode-name mode-line-process minor-mode-alist "%n" ")%] "
+                             (-3 . "%p")))
+
 (dolist (group-reg '(;; This is a clever regex that matches all but
                      ;; the classname of an import. Grouping for
                      ;; everybody!
