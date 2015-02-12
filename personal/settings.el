@@ -179,7 +179,10 @@ The function is suitable for `erc-after-connect'."
   (ANY 2)
   (context 2)
   (b-do 2)
-  (listen 2))
+  (listen 2)
+  (for-all 1)
+  (vertically-centered 2)
+  (horizontally-centered 2))
 
 (require 'clj-refactor)
 
