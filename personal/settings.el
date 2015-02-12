@@ -228,7 +228,8 @@ Meant for use with all Lisp modes"
                                    "/local/android-sdk-linux"))
 
 (require 'magit)
-
+(add-hook 'magit-status-mode-hook (lambda ()
+                                    (magit-refresh)))
 ;; CC-mode setups
 (let ((indent-tabs '((c-offsets-alist
                       (case-label . +)))))
