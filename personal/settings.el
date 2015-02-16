@@ -76,6 +76,7 @@
 ;; Mac specific changes
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
+  (setq mouse-wheel-scroll-amount '(0.00001))
   (setenv "GIT_SSH" "/usr/bin/ssh"))
 
 ;; Windows specific changes
