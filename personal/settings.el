@@ -181,8 +181,8 @@ The function is suitable for `erc-after-connect'."
   (b-do 2)
   (listen 2)
   (for-all 1)
-  (vertically-centered 2)
-  (horizontally-centered 2))
+  (centered 2)
+  (push 1))
 
 (require 'clj-refactor)
 
