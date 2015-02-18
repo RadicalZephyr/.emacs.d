@@ -183,7 +183,8 @@ The function is suitable for `erc-after-connect'."
   (listen 2)
   (for-all 1)
   (centered 2)
-  (push 1))
+  (push 1)
+  (game-loop 2))
 
 (require 'clj-refactor)
 
