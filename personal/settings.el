@@ -51,7 +51,7 @@
 (setq visible-bell t)
 (ansi-color-for-comint-mode-on)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-(set-face-attribute 'default nil :height 150)
+(set-frame-font "-*-Triplicate T4-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
 
 ;; Scrolling settings
 
