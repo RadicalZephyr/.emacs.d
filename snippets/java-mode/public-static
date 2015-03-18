@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: public static
+# key: pst
+# binding: direct-keybinding
+# --
+public static $0
