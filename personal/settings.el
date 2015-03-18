@@ -143,6 +143,7 @@ The function is suitable for `erc-after-connect'."
                             batch-mode
                             erefactor
                             gnuplot
+                            gh-md
                             csharp-mode
                             fsharp-mode
                             groovy-mode
@@ -153,6 +154,8 @@ The function is suitable for `erc-after-connect'."
                             yasnippet
                             java-snippets
                             clojure-snippets
+
+                            yatemplate
                             ))
 
 (require 'lentic)
