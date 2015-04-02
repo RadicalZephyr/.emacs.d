@@ -140,10 +140,12 @@ The function is suitable for `erc-after-connect'."
                             flycheck-color-mode-line
 
                             ;; Other cool stuff
+                            aggressive-indent
                             batch-mode
                             erefactor
                             gnuplot
                             gh-md
+                            paradox
                             csharp-mode
                             fsharp-mode
                             groovy-mode
