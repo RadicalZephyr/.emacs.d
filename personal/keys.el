@@ -45,4 +45,5 @@
                                  (interactive)
                                  (scroll-up 1)))
 
+(global-set-key (kbd "M-`") 'other-frame)
 ;;; keys.el ends here
