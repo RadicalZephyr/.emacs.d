@@ -15,7 +15,8 @@
                           ("\\.markdown\\'" . markdown-mode)
                           ("\.groovy$" . groovy-mode)
                           ("\.gradle$" . groovy-mode)
-                          ("\\.xtm$" . extempore-mode)))
+                          ("\\.xtm$" . extempore-mode)
+                          ("\\.boot$" . clojure-mode)))
   (add-to-list 'auto-mode-alist
                auto-mode-pair))
 
