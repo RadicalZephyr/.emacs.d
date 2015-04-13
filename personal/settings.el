@@ -130,6 +130,10 @@ The function is suitable for `erc-after-connect'."
                             rinari
                             yari
                             ruby-tools
+                            robe
+                            rspec-mode
+                            rubocop
+                            ruby-guard
 
                             ;; R
                             ess
