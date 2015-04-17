@@ -126,6 +126,7 @@ The function is suitable for `erc-after-connect'."
                             php-mode
 
                             ;; Ruby
+                            rbenv
                             inf-ruby
                             rinari
                             yari
@@ -194,7 +195,9 @@ The function is suitable for `erc-after-connect'."
   (for-all 1)
   (centered 2)
   (push 1)
-  (game-loop 2))
+  (game-loop 2)
+  (describe 1)
+  (it 1))
 
 (require 'clj-refactor)
 
