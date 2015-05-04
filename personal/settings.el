@@ -31,6 +31,9 @@
 
 (setq prelude-guru nil)
 
+;; Activate server mode
+(server-start)
+
 ;; Desktop mode enhancements
 (desktop-save-mode)
 (dolist (pattern '("irc\..*" ; Keep irc buffers when
