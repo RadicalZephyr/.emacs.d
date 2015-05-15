@@ -301,4 +301,11 @@ Meant for use with all Lisp modes"
 (setq user-extempore-directory
       "/usr/local/Cellar/extempore/0.53/")
 
+;; Setup Web-mode indentations how I like
+(setq web-mode-attr-indent-offset 2
+      web-mode-code-indent-offset 2
+      web-mode-css-indent-offset 2
+      web-mode-markup-indent-offset 2
+      web-mode-sql-indent-offset 2)
+
 ;;; settings.el ends here
