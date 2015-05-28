@@ -93,8 +93,7 @@
 (setq erc-nick "geoffs")
 (setq erc-fill-column 72)
 (setq erc-autojoin-channels-alist
-      '(("freenode.net" "#clojure" "#emacs"
-         "#wwu-alumni" "#wwucs" "#wwu-devops")))
+      '(("freenode.net" "#clojure" "#emacs")))
 
 (defun erc-ghost-maybe (server nick)
   "Send GHOST message to NickServ if NICK ends with `erc-nick-uniquifier'.
