@@ -114,6 +114,8 @@ The function is suitable for `erc-after-connect'."
 (prelude-require-packages '(;; Great utilities
                             color-theme
                             magit
+                            magit-filenotify
+                            git-timemachine
                             paredit
                             smart-tab
                             smartparens
