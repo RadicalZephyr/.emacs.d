@@ -193,6 +193,8 @@ The function is suitable for `erc-after-connect'."
   (DELETE 2)
   (HEAD 2)
   (ANY 2)
+  (fact 1)
+  (facts 1)
   (context 2)
   (b-do 2)
   (listen 2)
