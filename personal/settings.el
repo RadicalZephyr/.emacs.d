@@ -172,6 +172,10 @@ The function is suitable for `erc-after-connect'."
                             yatemplate
                             ))
 
+;; Ido/everywhere/ubiquitous settings
+(ido-everywhere +1)
+(setq ido-use-filename-at-point nil)
+
 (require 'lentic)
 
 (require 'exec-path-from-shell)
