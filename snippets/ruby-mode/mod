@@ -1,0 +1,28 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Generate module definitions based on file path
+# key: mod
+# --
+`(flet ((try-src-prefix
+        (path src-pfx)
+        (let ((parts (split-string path src-pfx)))
+          (if (= 2 (length parts))
+              (second parts)
+            nil))))
+  (let* ((p (buffer-file-name))
+         (p2 (first
+              (remove-if-not '(lambda (x) x)
+                             (mapcar
+                              '(lambda (pfx)
+                                 (try-src-prefix p pfx))
+                              '("/lib/")))))
+         (p3 (file-name-sans-extension p2))
+         (p4 (reduce '(lambda (x acc)
+                           (concat (if (equal acc "") "class " "module ")
+                                   (upcase-initials x)
+                                   "\n"
+                                   acc
+                                   "\nend"))
+                        (split-string p3 "/")
+                        :initial-value ""
+                        :from-end t)))
+    (replace-regexp-in-string "_" "" p4)))`

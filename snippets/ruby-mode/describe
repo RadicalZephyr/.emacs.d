@@ -1,0 +1,26 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: expand an rspec description based on file name
+# key: desc
+# --
+describe ${1:`(flet ((try-src-prefix
+        (path src-pfx)
+        (let ((parts (split-string path src-pfx)))
+          (if (= 2 (length parts))
+              (second parts)
+            nil))))
+  (let* ((p (buffer-file-name))
+         (p2 (first
+              (remove-if-not '(lambda (x) x)
+                             (mapcar
+                              '(lambda (pfx)
+                                 (try-src-prefix p pfx))
+                              '("/spec/")))))
+         (p3 (file-name-sans-extension p2))
+         (p4 (replace-regexp-in-string "_spec$" "" p3))
+         (p5 (mapconcat '(lambda (x)
+                           (upcase-initials x))
+                        (split-string p4 "/")
+                        "::")))
+    (replace-regexp-in-string "_" "" p5)))`} do
+    $0
+end
