@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: procedure
+# key: proc
+# --
+procedure ${1:`(capitalize (file-name-sans-extension (buffer-name)))`} is
+  $2
+begin
+  $0
+end $1;
