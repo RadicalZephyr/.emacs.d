@@ -18,6 +18,7 @@
                           ("\.gradle$" . groovy-mode)
                           ("\\.xtm$" . extempore-mode)
                           ("\\.boot$" . clojure-mode)
+                          ("\\.gpr$" . ada-mode)
                           ("\\.mustache$" . web-mode)))
   (add-to-list 'auto-mode-alist
                auto-mode-pair))
