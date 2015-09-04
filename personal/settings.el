@@ -123,6 +123,11 @@ The function is suitable for `erc-after-connect'."
                             exec-path-from-shell
                             lentic
 
+                            ;; Common lisp stuff
+                            slime
+                            slime-company
+                            common-lisp-snippets
+
                             ;; Clojure stuff
                             clj-refactor
                             cljsbuild-mode
@@ -317,5 +322,9 @@ Meant for use with all Lisp modes"
       web-mode-css-indent-offset 2
       web-mode-markup-indent-offset 2
       web-mode-sql-indent-offset 2)
+
+;; Common Lisp!
+
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
 
 ;;; settings.el ends here
