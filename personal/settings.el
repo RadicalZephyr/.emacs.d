@@ -210,7 +210,8 @@ The function is suitable for `erc-after-connect'."
   (push 1)
   (game-loop 2)
   (describe 1)
-  (it 1))
+  (it 1)
+  (html-fn 'defun))
 
 (require 'clj-refactor)
 
