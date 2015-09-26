@@ -80,10 +80,13 @@
   (when (fboundp mode)
     (funcall mode -1)))
 
+(setq home-dir "/home/geoff")
+
 ;; Mac specific changes
 (when (eq system-type 'darwin)
-  (setq mac-command-modifier 'meta)
-  (setq mouse-wheel-scroll-amount '(0.00000000000000000000001))
+  (setq mac-command-modifier      'meta
+        mouse-wheel-scroll-amount '(0.00000000000000000000001)
+        home-dir "/Users/geoff")
   (setenv "GIT_SSH" "/usr/bin/ssh"))
 
 ;; Windows specific changes
@@ -326,5 +329,10 @@ Meant for use with all Lisp modes"
 ;; Common Lisp!
 
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
+
+;; Rust
+
+(setq racer-cmd (concat home-dir "src/racer/target/release/racer")
+      racer-rust-src-path (concat home-dir "/src/rustc-1.3.0/src/"))
 
 ;;; settings.el ends here
