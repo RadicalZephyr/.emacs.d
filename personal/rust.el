@@ -1,8 +1,9 @@
 (require 'compile)
+(require 'rust-mode)
 (add-hook 'rust-mode-hook
           (lambda ()
             (set (make-local-variable 'compile-command)
-                 (if (locate-dominating-file "Cargo.toml")
+                 (if (locate-dominating-file (buffer-file-name) "Cargo.toml")
                      "cargo build"
                    "rustc *.rs"))))
 

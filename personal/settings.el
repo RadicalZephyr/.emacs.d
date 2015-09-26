@@ -181,6 +181,10 @@ The function is suitable for `erc-after-connect'."
                             yatemplate
                             ))
 
+;; Company mode on tab by default
+
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+
 ;; Ido/everywhere/ubiquitous settings
 (ido-everywhere +1)
 (setq ido-use-filename-at-point nil)
@@ -332,7 +336,7 @@ Meant for use with all Lisp modes"
 
 ;; Rust
 
-(setq racer-cmd (concat home-dir "src/racer/target/release/racer")
+(setq racer-cmd (concat home-dir "/src/racer/target/release/racer")
       racer-rust-src-path (concat home-dir "/src/rustc-1.3.0/src/"))
 
 ;;; settings.el ends here
