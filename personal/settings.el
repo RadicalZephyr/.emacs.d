@@ -214,7 +214,7 @@ The function is suitable for `erc-after-connect'."
   (ANY 2)
   (fact 1)
   (facts 1)
-  (context 2)
+  (context 1)
   (b-do 2)
   (listen 2)
   (for-all 1)
