@@ -223,6 +223,7 @@ The function is suitable for `erc-after-connect'."
   (game-loop 2)
   (describe 1)
   (it 1)
+  (alter-var-root 1)
   (html-fn 'defun))
 
 (require 'clj-refactor)
