@@ -27,7 +27,7 @@
   (add-to-list 'interpreter-mode-alist auto-interpreter-pair))
 
 (setq completion-ignored-extensions
-      (append '(".ali" ".exe" ".beam")
+      (append '(".ali" ".exe" ".beam" ".class")
               completion-ignored-extensions))
 
 (setq-default indent-tabs-mode nil)
