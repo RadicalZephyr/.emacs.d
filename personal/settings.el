@@ -276,6 +276,8 @@ Meant for use with all Lisp modes"
 (require 'magit)
 (add-hook 'magit-status-mode-hook (lambda ()
                                     (magit-refresh)))
+(global-magit-file-buffer-mode)
+
 ;; CC-mode setups
 (let ((indent-tabs '((c-offsets-alist
                       (case-label . +)))))
