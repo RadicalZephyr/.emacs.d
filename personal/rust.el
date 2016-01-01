@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(rust-mode rustfmt racer company-racer toml-mode))
+(prelude-require-packages '(rust-mode rustfmt flycheck-rust racer company-racer toml-mode))
 
 (require 'compile)
 (require 'rust-mode)
@@ -23,4 +23,6 @@
 (add-hook 'racer-mode-hook #'eldoc-mode)
 
 (add-hook 'rust-mode-hook #'rustfmt-enable-on-save)
+
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 ;;; rust.el ends here
