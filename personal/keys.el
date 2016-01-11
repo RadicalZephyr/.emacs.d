@@ -9,6 +9,7 @@
 (global-set-key "%" 'goto-match-paren)
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 (global-set-key (kbd "C-x C-o") 'other-window)
+(global-set-key (kbd "C-x C-h") 'bury-buffer)
 
 (global-set-key (kbd "C-c c u") 'unfill-paragraph)
 (global-set-key (kbd "C-c c f") 'desktop-change-dir)
