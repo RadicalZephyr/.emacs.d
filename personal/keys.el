@@ -35,17 +35,20 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 
 ;; Swap line upwards
-(global-set-key (kbd "C-c t") (lambda ()
-                           (interactive)
-                           (transpose-lines -1)))
+(global-set-key (kbd "C-c t")
+                (lambda ()
+                  (interactive)
+                  (transpose-lines -1)))
 
-(global-set-key (kbd "<C-up>") (lambda ()
-                                 (interactive)
-                                 (scroll-down 1)))
+(global-set-key (kbd "<C-up>")
+                (lambda ()
+                  (interactive)
+                  (scroll-down 1)))
 
-(global-set-key (kbd "<C-down>") (lambda ()
-                                 (interactive)
-                                 (scroll-up 1)))
+(global-set-key (kbd "<C-down>")
+                (lambda ()
+                  (interactive)
+                  (scroll-up 1)))
 
 (global-set-key (kbd "M-`") 'other-frame)
 ;;; keys.el ends here
