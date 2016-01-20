@@ -272,9 +272,9 @@ Meant for use with all Lisp modes"
                             (flyspell-mode 1)))
 
 ;; Android mode setups
-(require 'android-mode)
+;; (require 'android-mode)
 (setq android-mode-sdk-dir (concat (getenv "HOME")
-                                   "/local/android-sdk-linux"))
+                                   "/.local/android-sdk-linux"))
 
 (require 'magit)
 (add-hook 'magit-status-mode-hook (lambda ()
