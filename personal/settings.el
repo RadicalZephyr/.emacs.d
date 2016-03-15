@@ -348,4 +348,7 @@ Meant for use with all Lisp modes"
 (setq racer-cmd (concat home-dir "/src/racer/target/release/racer")
       racer-rust-src-path (concat home-dir "/src/rustc-1.3.0/src/"))
 
+;; Enable disabled things
+(put 'set-goal-column 'disabled nil)
+
 ;;; settings.el ends here
