@@ -229,8 +229,7 @@ The function is suitable for `erc-after-connect'."
   (context 'defun)
   (it 'defun)
   (alter-var-root 1)
-  (html-fn 'defun)
-  (:require 'defun))
+  (html-fn 'defun))
 
 (require 'clj-refactor)
 
