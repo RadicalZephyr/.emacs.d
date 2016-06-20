@@ -14,7 +14,7 @@
                              (mapcar
                               '(lambda (pfx)
                                  (try-src-prefix p pfx))
-                              '("/lib/")))))
+                              '("/lib/" "/spec/" "/app/controllers/" "/app/models/")))))
          (p3 (file-name-sans-extension p2))
          (p4 (reduce '(lambda (x acc)
                            (concat (if (equal acc "") "class " "module ")
