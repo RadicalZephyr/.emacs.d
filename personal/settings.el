@@ -7,7 +7,6 @@
 ;;; Code:
 
 ;; Set my user-init-file to be this file
-(setq prelude-user-init-file load-file-name)
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 (dolist (auto-mode-pair '(("\\.php\\'" . php-mode)
