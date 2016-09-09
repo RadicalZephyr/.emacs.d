@@ -148,6 +148,7 @@ The function is suitable for `erc-after-connect'."
                             rspec-mode
                             rubocop
                             ruby-guard
+                            ruby-refactor
 
                             ;; R
                             ess
