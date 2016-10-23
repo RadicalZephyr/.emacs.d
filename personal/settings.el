@@ -112,6 +112,9 @@ The function is suitable for `erc-after-connect'."
                                        nick-orig password))))))
 (add-hook 'erc-after-connect 'erc-ghost-maybe)
 
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 ;; Packages and Stuff
 (prelude-require-packages '(;; Great utilities
                             color-theme
@@ -133,6 +136,7 @@ The function is suitable for `erc-after-connect'."
                             clj-refactor
                             cljsbuild-mode
                             clojure-cheatsheet
+                            expectations-mode
 
                             ;; PHP
                             flymake-php
@@ -229,7 +233,13 @@ The function is suitable for `erc-after-connect'."
   (it 'defun)
   (alter-var-root 1)
   (html-fn 'defun)
-  (:require 0))
+  (:require 0)
+  (expect 'defun)
+  (expect-let 'defun)
+  (given 'defun)
+  (freeze-time 1)
+  (redef-state 1)
+  (from-each 1))
 
 (require 'clj-refactor)
 
