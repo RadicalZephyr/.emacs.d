@@ -238,8 +238,8 @@ The function is suitable for `erc-after-connect'."
                                (cljr-add-keybindings-with-prefix "C-c C-s")))
 
 ;; ESS setups
-(require 'ess)
-(require 'ess-site)
+;; (require 'ess)
+;; (require 'ess-site)
 
 ;; Csharp setups
 (add-hook 'csharp-mode-hook
