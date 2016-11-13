@@ -136,7 +136,6 @@ The function is suitable for `erc-after-connect'."
                             clj-refactor
                             cljsbuild-mode
                             clojure-cheatsheet
-                            expectations-mode
 
                             ;; PHP
                             flymake-php
