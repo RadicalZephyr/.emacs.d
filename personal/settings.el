@@ -259,7 +259,7 @@ The function is suitable for `erc-after-connect'."
 
 ;; Groovy setups
 
-(require 'groovy-mode)
+;; (require 'groovy-mode)
 
 ;; Lisp mode setups
 (defun radz-paredit-no-smartparens ()
@@ -355,8 +355,8 @@ Meant for use with all Lisp modes"
 
 ;; Rust
 
-(setq racer-cmd (concat home-dir "/src/racer/target/release/racer")
-      racer-rust-src-path (concat home-dir "/src/rustc-1.3.0/src/"))
+;; (setq racer-cmd (concat home-dir "/src/racer/target/release/racer")
+;;       racer-rust-src-path (concat home-dir "/src/rustc-1.3.0/src/"))
 
 ;; Enable disabled things
 (put 'set-goal-column 'disabled nil)
