@@ -352,10 +352,10 @@ Meant for use with all Lisp modes"
 
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
-;; Rust
+;; Racer setup
 
-;; (setq racer-cmd (concat home-dir "/src/racer/target/release/racer")
-;;       racer-rust-src-path (concat home-dir "/src/rustc-1.3.0/src/"))
+(setq racer-cmd (concat home-dir "/.cargo/bin/racer")
+      racer-rust-src-path (concat home-dir "/src/rust/src"))
 
 ;; Enable disabled things
 (put 'set-goal-column 'disabled nil)
