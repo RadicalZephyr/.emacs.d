@@ -112,9 +112,6 @@ The function is suitable for `erc-after-connect'."
                                        nick-orig password))))))
 (add-hook 'erc-after-connect 'erc-ghost-maybe)
 
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-
 ;; Packages and Stuff
 (prelude-require-packages '(;; Great utilities
                             color-theme
