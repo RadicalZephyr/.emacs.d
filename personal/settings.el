@@ -283,8 +283,6 @@ Meant for use with all Lisp modes"
                                    "/.local/android-sdk-linux"))
 
 (require 'magit)
-(add-hook 'magit-status-mode-hook (lambda ()
-                                    (magit-refresh)))
 (global-magit-file-buffer-mode)
 
 ;; CC-mode setups
