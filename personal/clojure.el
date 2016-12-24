@@ -13,3 +13,5 @@ This uses the Leiningen convention of appending '-test' to the namespace name."
   (setq cider-test-infer-test-ns 'speclj-test-ns-fn))
 
 (setenv "EXPECTATIONS_COLORIZE" "false")
+
+(setq cider-boot-parameters "repl -s watch notify -v refresh")
