@@ -203,6 +203,7 @@ The function is suitable for `erc-after-connect'."
 (require 'clojure-mode)
 
 (define-clojure-indent
+  (fdef 'defun)
   (updating-coll-by 'defun)
   (defroutes 'defun)
   (routes 'defun)
