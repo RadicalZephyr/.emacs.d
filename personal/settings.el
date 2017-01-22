@@ -9,26 +9,6 @@
 ;; Set my user-init-file to be this file
 (setq magit-last-seen-setup-instructions "1.4.0")
 
-(dolist (auto-mode-pair '(("\\.php\\'" . php-mode)
-                          ("\\.rkt\\'" . scheme-mode)
-                          ("\\.md\\'" . markdown-mode)
-                          ("\\.markdown\\'" . markdown-mode)
-                          ("\.groovy$" . groovy-mode)
-                          ("\.gradle$" . groovy-mode)
-                          ("\\.xtm$" . extempore-mode)
-                          ("\\.boot$" . clojure-mode)
-                          ("\\.gpr$" . ada-mode)
-                          ("\\.mustache$" . web-mode)))
-  (add-to-list 'auto-mode-alist
-               auto-mode-pair))
-
-(dolist (auto-interpreter-pair '(("groovy" . groovy-mode)))
-  (add-to-list 'interpreter-mode-alist auto-interpreter-pair))
-
-(setq completion-ignored-extensions
-      (append '(".ali" ".exe" ".beam" ".class")
-              completion-ignored-extensions))
-
 (setq-default indent-tabs-mode nil)
 
 (setq prelude-guru nil)
@@ -36,81 +16,10 @@
 ;; Activate server mode
 (server-start)
 
-;; Desktop mode enhancements
-(desktop-save-mode)
-(dolist (pattern '("irc\..*" ; Keep irc buffers when
-                   "#.+"))   ; switching desktops
-  (add-to-list 'desktop-clear-preserve-buffers
-               pattern))
-
-(add-hook 'desktop-no-desktop-file-hook
-          (lambda ()
-            (dired default-directory)))
-
 ;; Compile setups
 (setq compilation-always-kill nil)
 
-;; Visual Modifications
-(blink-cursor-mode 1)
-(setq default-tab-width 2)
-(setq x-stretch-cursor t)
-(setq visible-bell t)
-(ansi-color-for-comint-mode-on)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-
-;; Scrolling settings
-
-(setq scroll-margin 5
-      scroll-conservatively 10
-      scroll-preserve-screen-position nil)
-
-;; Enable some modes
-(dolist (mode '(column-number-mode
-                global-linum-mode
-                ))
-  (when (fboundp mode)
-    (funcall mode)))
-
-;; Disable some modes
-(dolist (mode '(scroll-bar-mode
-                tool-bar-mode
-                menu-bar-mode))
-  (when (fboundp mode)
-    (funcall mode -1)))
-
 (setq home-dir "/home/geoff")
-
-;; Mac specific changes
-(when (eq system-type 'darwin)
-  (setq mac-command-modifier      'meta
-        mouse-wheel-scroll-amount '(0.00000000000000000000001)
-        home-dir "/Users/geoff")
-  (setenv "GIT_SSH" "/usr/bin/ssh"))
-
-;; Windows specific changes
-(when (eq system-type 'windows-nt)
-  (setq magit-git-executable "C:\\Program Files (x86)\\Git\\bin\\git.exe"))
-
-;; ERC Settings
-(setq erc-nick "geoffs")
-(setq erc-fill-column 72)
-(setq erc-autojoin-channels-alist
-      '(("freenode.net" "#clojure" "#emacs")))
-
-(defun erc-ghost-maybe (server nick)
-  "Send GHOST message to NickServ if NICK ends with `erc-nick-uniquifier'.
-The function is suitable for `erc-after-connect'."
-  (when (string-match (format "\\(.*?\\)%s+$" erc-nick-uniquifier) nick)
-    (let ((nick-orig (match-string 1 nick))
-          (password erc-session-password))
-      (when (y-or-n-p (format "Current nick is '%s'. Do you want to ghost?"
-                              nick))
-        (erc-message "PRIVMSG" (format "NickServ GHOST %s %s"
-                                       nick-orig password))
-        (erc-cmd-NICK nick-orig)
-        (erc-message "PRIVMSG" (format "NickServ identify %s %s"
-                                       nick-orig password))))))
-(add-hook 'erc-after-connect 'erc-ghost-maybe)
 
 ;; Packages and Stuff
 (prelude-require-packages '(;; Great utilities
