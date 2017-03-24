@@ -138,6 +138,7 @@
   (describe 'defun)
   (context 'defun)
   (it 'defun)
+  (xit 'defun)
   (alter-var-root 1)
   (html-fn 'defun)
   (:require 0)
@@ -146,7 +147,8 @@
   (given 'defun)
   (freeze-time 1)
   (redef-state 1)
-  (from-each 1))
+  (from-each 1)
+  (trace-forms 'defun))
 
 (require 'clj-refactor)
 
