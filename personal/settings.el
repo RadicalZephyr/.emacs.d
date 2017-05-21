@@ -204,31 +204,31 @@ Meant for use with all Lisp modes"
     (c-add-style style indent-tabs)))    ;; indent the case labels
 
 ;; JDEE setups
-;; (add-to-list 'load-path
-;;              (concat (file-name-as-directory prelude-personal-dir)
-;;                      "jdee-2.4.1/lisp"))
-;; (load "jde")
+(add-to-list 'load-path
+             (concat (file-name-as-directory prelude-personal-dir)
+                     "jdee-2.4.1/lisp"))
+(load "jde")
 
-;; (setq  jde-import-auto-sort t
-;;        jde-import-auto-sort-function (lambda () ;; Force reorganizing
-;;                                        (jde-import-organize t))
-;;        jde-import-blank-line-between-groups t
-;;        jde-import-sorted-groups 'asc)
+(setq  jde-import-auto-sort t
+       jde-import-auto-sort-function (lambda () ;; Force reorganizing
+                                       (jde-import-organize t))
+       jde-import-blank-line-between-groups t
+       jde-import-sorted-groups 'asc)
 
-;; (setq jde-mode-line-format '("-" mode-line-mule-info mode-line-modified mode-line-frame-identification mode-line-buffer-identification " " global-mode-string
-;;                              (line-number-mode "(%l,")
-;;                              (column-number-mode "%c)")
-;;                              (jde-which-method-mode
-;;                               ("  " jde-which-method-format "  "))
-;;                              "%[(" mode-name mode-line-process minor-mode-alist "%n" ")%] "
-;;                              (-3 . "%p")))
+(setq jde-mode-line-format '("-" mode-line-mule-info mode-line-modified mode-line-frame-identification mode-line-buffer-identification " " global-mode-string
+                             (line-number-mode "(%l,")
+                             (column-number-mode "%c)")
+                             (jde-which-method-mode
+                              ("  " jde-which-method-format "  "))
+                             "%[(" mode-name mode-line-process minor-mode-alist "%n" ")%] "
+                             (-3 . "%p")))
 
-;; (dolist (group-reg '(;; This is a clever regex that matches all but
-;;                      ;; the classname of an import. Grouping for
-;;                      ;; everybody!
-;;                      ("^\\(\\([[:alnum:]]+\\.?\\)\\{1,3\\}\\)\\." . 1)))
-;;   (add-to-list 'jde-import-group-of-rules
-;;                group-reg t))
+(dolist (group-reg '(;; This is a clever regex that matches all but
+                     ;; the classname of an import. Grouping for
+                     ;; everybody!
+                     ("^\\(\\([[:alnum:]]+\\.?\\)\\{1,3\\}\\)\\." . 1)))
+  (add-to-list 'jde-import-group-of-rules
+               group-reg t))
 
 ;; Add directories relative to HOME to classpath
 ;; (dolist (path
