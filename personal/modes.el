@@ -7,7 +7,8 @@
                           ("\\.xtm$" . extempore-mode)
                           ("\\.boot$" . clojure-mode)
                           ("\\.gpr$" . ada-mode)
-                          ("\\.mustache$" . web-mode)))
+                          ("\\.mustache$" . web-mode)
+                          ("\\.cljt$" . clojure-mode)))
   (add-to-list 'auto-mode-alist
                auto-mode-pair))
 
