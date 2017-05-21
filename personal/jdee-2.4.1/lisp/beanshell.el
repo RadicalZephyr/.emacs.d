@@ -225,7 +225,7 @@ buffer."
   (oset this process (get-buffer-process (oref this buffer)))
   (oset this filter (process-filter (oref this process)))
 
-  ;; moved to `process-query-on-exit-flag' per compile warning hint: 
+  ;; moved to `process-query-on-exit-flag' per compile warning hint:
   ;; `process-kill-without-query' is an obsolete function (as of Emacs 22.1);
   ;; use `process-query-on-exit-flag' or `set-process-query-on-exit-flag'.
   ;;
@@ -859,14 +859,14 @@ Emacs package.")
 by Pat Niemeyer."
   (interactive)
   (oset-default 'bsh-standalone-bsh the-bsh (bsh-standalone-bsh "Standalone BeanShell"))
-  (bsh-launch (oref bsh-standalone-bsh the-bsh) t))
+  (bsh-launch (oref-default 'bsh-standalone-bsh the-bsh) t))
 
 (defun bsh-exit ()
   "Closes the standalone version of the BeanShell."
   (interactive)
   (let ((bsh
 	 (if (slot-boundp 'bsh-standalone-bsh 'the-bsh)
-	     (oref 'bsh-standalone-bsh the-bsh))))
+	     (oref-default 'bsh-standalone-bsh the-bsh))))
     (if (and bsh (bsh-running-p bsh))
 	(bsh-kill-process bsh)
       (message "The beanshell is not running"))))
