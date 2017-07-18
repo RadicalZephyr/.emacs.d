@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(rust-mode rustfmt flycheck-rust racer company-racer toml-mode))
+(prelude-require-packages '(rust-mode flycheck-rust racer company-racer toml-mode))
 
 (require 'compile)
 (require 'rust-mode)
