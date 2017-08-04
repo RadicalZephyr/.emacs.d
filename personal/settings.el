@@ -41,7 +41,6 @@
                             ;; Clojure stuff
                             clj-refactor
                             cljsbuild-mode
-                            clojure-cheatsheet
 
                             ;; PHP
                             flymake-php
@@ -77,7 +76,7 @@
                             paradox
                             csharp-mode
                             fsharp-mode
-                            groovy-mode
+                            ;; groovy-mode
                             markdown-mode
                             markdown-mode+
 
@@ -107,54 +106,6 @@
 (yas-global-mode t)
 
 (smartparens-global-mode t)
-
-;; Clojure  setups
-(require 'clojure-mode)
-
-(define-clojure-indent
-  (fdef 'defun)
-  (updating-coll-by 'defun)
-  (defroutes 'defun)
-  (routes 'defun)
-  (GET 'defun)
-  (POST 'defun)
-  (PUT 'defun)
-  (DELETE 'defun)
-  (HEAD 'defun)
-  (ANY 'defun)
-  (fact 1)
-  (facts 1)
-  (context 1)
-  (b-do 2)
-  (listen 2)
-  (for-all 1)
-  (centered 2)
-  (push 1)
-  (game-loop 2)
-  (around 'defun)
-  (after 'defun)
-  (before 'defun)
-  (with 'defun)
-  (describe 'defun)
-  (context 'defun)
-  (it 'defun)
-  (xit 'defun)
-  (alter-var-root 1)
-  (html-fn 'defun)
-  (:require 0)
-  (expect 'defun)
-  (expect-let 'defun)
-  (given 'defun)
-  (freeze-time 1)
-  (redef-state 1)
-  (from-each 1)
-  (trace-forms 'defun))
-
-(require 'clj-refactor)
-
-(add-hook 'clojure-mode-hook (lambda ()
-                               (clj-refactor-mode 1)
-                               (cljr-add-keybindings-with-prefix "C-c C-s")))
 
 ;; ESS setups
 ;; (require 'ess)
