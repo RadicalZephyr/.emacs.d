@@ -61,4 +61,5 @@ This uses the Leiningen convention of appending '-test' to the namespace name."
   (freeze-time 1)
   (redef-state 1)
   (from-each 1)
-  (trace-forms 'defun))
+  (trace-forms 'defun)
+  (at-keyframes 'defun))
