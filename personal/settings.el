@@ -19,8 +19,6 @@
 ;; Compile setups
 (setq compilation-always-kill nil)
 
-(setq home-dir "/home/geoff")
-
 ;; Packages and Stuff
 (prelude-require-packages '(;; Great utilities
                             color-theme
@@ -143,7 +141,7 @@ Meant for use with all Lisp modes"
 
 ;; Android mode setups
 ;; (require 'android-mode)
-(setq android-mode-sdk-dir (concat (getenv "HOME")
+(setq android-mode-sdk-dir (concat home-dir
                                    "/.local/android-sdk-linux"))
 
 (require 'magit)
