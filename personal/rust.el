@@ -8,7 +8,14 @@
 
 (require 'compile)
 (require 'rust-mode)
+(require 'racer)
 (require 'toml-mode)
+
+;; Racer setup
+
+(setq racer-cmd (concat home-dir "/.cargo/bin/racer")
+      racer-rust-src-path (concat home-dir "/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust"))
+
 
 (defun radz-set-rust-build-command ()
   (set (make-local-variable 'compile-command)
