@@ -133,6 +133,7 @@ Meant for use with all Lisp modes"
 (add-hook 'scheme-mode-hook 'radz-paredit-no-smartparens)
 (add-hook 'lisp-mode-hook 'radz-paredit-no-smartparens)
 (add-hook 'clojure-mode-hook 'radz-paredit-no-smartparens)
+(add-hook 'clojurescript-mode-hook 'radz-paredit-no-smartparens)
 (add-hook 'cider-repl-mode-hook 'radz-paredit-no-smartparens)
 
 (add-hook 'text-mode-hook (lambda ()
