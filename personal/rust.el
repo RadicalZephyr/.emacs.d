@@ -14,8 +14,10 @@
 ;; Racer setup
 
 (setq racer-cmd (concat home-dir "/.cargo/bin/racer")
-      racer-rust-src-path (concat home-dir "/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust"))
+      racer-rust-src-path (concat home-dir "/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+      rust-format-on-save t)
 
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 
 (defun radz-set-rust-build-command ()
   (set (make-local-variable 'compile-command)
@@ -28,8 +30,7 @@
 
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
-
-(add-hook 'rust-mode-hook #'rustfmt-enable-on-save)
+(add-hook 'racer-mode-hook #'company-mode)
 
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 ;;; rust.el ends here
