@@ -2,7 +2,9 @@
   (toggle-frame-maximized))
 
 ;; Change default font size for everything forever
-;; (set-face-attribute 'default nil :height 100))
+(set-face-attribute 'default nil :height 110)
+;; for low DPI screens
+;; (set-face-attribute 'default nil :height 50)
 
 ;; Visual Modifications
 (blink-cursor-mode 1)
