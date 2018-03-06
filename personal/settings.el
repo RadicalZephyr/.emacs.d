@@ -213,4 +213,10 @@ Meant for use with all Lisp modes"
 ;; Enable disabled things
 (put 'set-goal-column 'disabled nil)
 
+;; Remove the scheme mode from the auto-alist (for working with Kicad schematic files)
+(setq auto-mode-alist
+      (append
+       '(("\\.\\(scm\\|stk\\|ss\\)\\'" . scheme-mode))
+       (rassq-delete-all 'scheme-mode auto-mode-alist)))
+
 ;;; settings.el ends here
