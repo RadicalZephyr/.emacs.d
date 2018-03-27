@@ -62,4 +62,5 @@ This uses the Leiningen convention of appending '-test' to the namespace name."
   (redef-state 1)
   (from-each 1)
   (trace-forms 'defun)
-  (at-keyframes 'defun))
+  (at-keyframes 'defun)
+  (against-background 'defun))
