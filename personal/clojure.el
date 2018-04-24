@@ -63,4 +63,5 @@ This uses the Leiningen convention of appending '-test' to the namespace name."
   (from-each 1)
   (trace-forms 'defun)
   (at-keyframes 'defun)
-  (against-background 'defun))
+  (against-background 'defun)
+  (emit-wrap 'defun))
