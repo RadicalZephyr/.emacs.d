@@ -6,7 +6,6 @@
 
 ;;; Code:
 
-;; Set my user-init-file to be this file
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 (setq-default indent-tabs-mode nil)
@@ -30,6 +29,7 @@
                             smartparens
                             exec-path-from-shell
                             lentic
+                            xclip
 
                             ;; Common lisp stuff
                             slime
