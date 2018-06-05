@@ -1,8 +1,16 @@
 ;; ERC Settings
-(setq erc-nick "geoffs")
-(setq erc-fill-column 72)
-(setq erc-autojoin-channels-alist
-      '(("freenode.net" "#clojure" "#emacs")))
+
+(require 'auth-source)
+(require 'erc)
+
+(setq
+ erc-nick "geoffs"
+ erc-prompt-for-password nil
+ erc-fill-column 89
+ erc-autojoin-timing 'ident
+ erc-autojoin-channels-alist
+ '(("freenode.net" "#clojure" "#emacs" "#beagle"))
+ )
 
 (defun erc-ghost-maybe (server nick)
   "Send GHOST message to NickServ if NICK ends with `erc-nick-uniquifier'.
@@ -19,5 +27,3 @@ The function is suitable for `erc-after-connect'."
                                        nick-orig password))))))
 
 (add-hook 'erc-after-connect 'erc-ghost-maybe)
-(add-hook 'erc-after-connect (lambda ()
-                               (erc-notifications-mode 1)))
