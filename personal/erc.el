@@ -17,4 +17,7 @@ The function is suitable for `erc-after-connect'."
         (erc-cmd-NICK nick-orig)
         (erc-message "PRIVMSG" (format "NickServ identify %s %s"
                                        nick-orig password))))))
+
 (add-hook 'erc-after-connect 'erc-ghost-maybe)
+(add-hook 'erc-after-connect (lambda ()
+                               (erc-notifications-mode 1)))
