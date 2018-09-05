@@ -22,14 +22,8 @@
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 (define-key rust-mode-map (kbd "C-c C-c M-k") #'cargo-process-clippy)
 
-(defun radz-set-rust-build-command ()
-  (set (make-local-variable 'compile-command)
-       (if (locate-dominating-file (buffer-file-name) "Cargo.toml")
-           "cargo build"
-         "rustc *.rs")))
-
-(add-hook 'rust-mode-hook 'radz-set-rust-build-command)
-(add-hook 'toml-mode-hook 'radz-set-rust-build-command)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'toml-mode-hook 'cargo-minor-mode)
 
 (add-hook 'racer-mode-hook #'company-mode)
 
