@@ -145,7 +145,6 @@ Meant for use with all Lisp modes"
                                    "/.local/android-sdk-linux"))
 
 (require 'magit)
-(global-magit-file-buffer-mode)
 
 ;; CC-mode setups
 (let ((indent-tabs '((c-offsets-alist
