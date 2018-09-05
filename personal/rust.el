@@ -20,6 +20,7 @@
       cargo-process--command-clippy "+nightly clippy")
 
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(define-key rust-mode-map (kbd "C-c C-c M-k") #'cargo-process-clippy)
 
 (defun radz-set-rust-build-command ()
   (set (make-local-variable 'compile-command)
