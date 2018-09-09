@@ -53,7 +53,6 @@
                             robe
                             rspec-mode
                             rubocop
-                            ruby-guard
                             ruby-refactor
 
                             ;; R
@@ -67,7 +66,6 @@
 
                             ;; Other cool stuff
                             aggressive-indent
-                            batch-mode
                             erefactor
                             gnuplot
                             gh-md
