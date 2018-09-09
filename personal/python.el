@@ -1,3 +1,7 @@
+(prelude-require-packages '(
+                            pytest
+                            ))
+
 (require 'pytest)
 
 (add-hook 'python-mode-hook

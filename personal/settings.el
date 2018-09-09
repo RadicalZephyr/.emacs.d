@@ -36,10 +36,6 @@
                             slime-company
                             common-lisp-snippets
 
-                            ;; Clojure stuff
-                            clj-refactor
-                            cljsbuild-mode
-
                             ;; PHP
                             flymake-php
                             php-mode

@@ -1,3 +1,8 @@
+(prelude-require-packages '(
+                            clj-refactor
+                            cljsbuild-mode
+                            ))
+
 (defun speclj-test-ns-fn (ns)
   "For a NS, return the test namespace, which may be the argument itself.
 This uses the Leiningen convention of appending '-test' to the namespace name."
