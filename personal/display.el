@@ -1,8 +1,15 @@
 (when (window-system)
   (toggle-frame-maximized))
 
+(defun radz-reset-default-font-height ()
+  "Set the font height to my favored default."
+  (interactive)
+  (set-face-attribute 'default nil :height 110))
+
 ;; Change default font size for everything forever
-(set-face-attribute 'default nil :height 110)
+(radz-reset-default-font-height)
+(global-set-key (kbd "C-c C-f") 'radz-reset-default-font-height)
+
 ;; for low DPI screens
 ;; (set-face-attribute 'default nil :height 50)
 
