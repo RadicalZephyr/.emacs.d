@@ -27,4 +27,11 @@
 
 (add-hook 'racer-mode-hook #'company-mode)
 
+(defun rust-file-p ()
+  "Check if the current file is a rust file."
+  (string-suffix-p ".rs" (buffer-file-name) true))
+
+(advice-add 'executable-make-buffer-file-executable-if-script-p :before-until #'rust-file-p)
+
+
 ;;; rust.el ends here
