@@ -71,6 +71,8 @@
                             ;; groovy-mode
                             markdown-mode
                             markdown-mode+
+                            nginx-mode
+                            systemd
 
                             ;; Snippets!!
                             yasnippet
