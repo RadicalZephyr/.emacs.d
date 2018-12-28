@@ -16,7 +16,7 @@
 (setq racer-cmd (concat home-dir "/.cargo/bin/racer")
       racer-rust-src-path (concat home-dir "/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
       rust-format-on-save t
-      rust-rustfmt-bin "rustup run nightly fmt"
+      rust-rustfmt-bin "rustfmt"
       cargo-process--command-clippy "+nightly clippy")
 
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
