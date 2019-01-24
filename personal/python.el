@@ -1,8 +1,11 @@
 (prelude-require-packages '(
                             pytest
+                            pipenv
                             ))
 
 (require 'pytest)
+
+(add-hook 'python-mode-hook #'pipenv-mode)
 
 (add-hook 'python-mode-hook
           (lambda ()
