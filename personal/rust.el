@@ -19,8 +19,28 @@
       rust-rustfmt-bin "rustfmt"
       cargo-process--command-clippy "+nightly clippy")
 
+(defun cargo-process-expand ()
+  "Run the Cargo expand command.
+With the prefix argument, modify the command's invocation.
+Cargo: Macro-expand the  current project.
+Requires Cargo expand to be installed."
+  (interactive)
+  (cargo-process--start "Expand" "expand --color never"))
+
+(defun cargo-process-current-file-expand ()
+  "Run the Cargo expand command on the current file.
+With the prefix argument, modify the command's invocation.
+Requires cargo-expand to be installed."
+  (interactive)
+  (cargo-process--start "Expand" (concat "expand --color never --"
+                                         (cargo-process--get-current-file-type)
+                                         " "
+                                         (file-name-base buffer-file-truename))))
+
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 (define-key rust-mode-map (kbd "C-c C-c M-k") #'cargo-process-clippy)
+(define-key rust-mode-map (kbd "C-c C-c C-e") #'cargo-process-expand)
+(define-key rust-mode-map (kbd "C-c C-c M-e") #'cargo-process-current-file-expand)
 
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'toml-mode-hook 'cargo-minor-mode)
