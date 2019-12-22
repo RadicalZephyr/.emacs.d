@@ -123,12 +123,15 @@ Meant for use with all Lisp modes"
   (smartparens-mode -1)
   (paredit-mode t))
 
-(add-hook 'emacs-lisp-mode-hook 'radz-paredit-no-smartparens)
-(add-hook 'scheme-mode-hook 'radz-paredit-no-smartparens)
-(add-hook 'lisp-mode-hook 'radz-paredit-no-smartparens)
-(add-hook 'clojure-mode-hook 'radz-paredit-no-smartparens)
-(add-hook 'clojurescript-mode-hook 'radz-paredit-no-smartparens)
-(add-hook 'cider-repl-mode-hook 'radz-paredit-no-smartparens)
+(dolist (hook '(emacs-lisp-mode-hook
+                racket-mode-hook
+                scheme-mode-hook
+                lisp-mode-hook
+                clojure-mode-hook
+                clojurescript-mode-hook
+                cider-repl-mode-hook
+                racket-repl-mode-hook))
+  (add-hook hook 'radz-paredit-no-smartparens))
 
 (add-hook 'text-mode-hook (lambda ()
                             (smartparens-mode -1)
