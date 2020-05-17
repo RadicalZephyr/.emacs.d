@@ -11,6 +11,7 @@
 (global-set-key (kbd "C-x C-o") 'ace-window)
 (global-set-key (kbd "C-x C-h") 'bury-buffer)
 
+(global-set-key (kbd "C-c c j") 'avy-goto-char)
 (global-set-key (kbd "C-c c u") 'unfill-paragraph)
 (global-set-key (kbd "C-c c f") 'desktop-change-dir)
 (global-set-key (kbd "C-c c b") 'ibuffer)
