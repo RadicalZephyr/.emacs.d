@@ -8,3 +8,6 @@
 (add-hook 'desktop-no-desktop-file-hook
           (lambda ()
             (dired default-directory)))
+
+(setq desktop-restore-eager 10
+      desktop-load-locked-desktop t)
