@@ -21,14 +21,14 @@
 ;; Packages and Stuff
 (prelude-require-packages '(;; Great utilities
                             color-theme
+                            exec-path-from-shell
+                            git-timemachine
+                            lentic
                             magit
                             magit-filenotify
-                            git-timemachine
                             paredit
                             smart-tab
                             smartparens
-                            exec-path-from-shell
-                            lentic
                             xclip
 
                             ;; Common lisp stuff
