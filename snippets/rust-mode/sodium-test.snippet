@@ -1,0 +1,25 @@
+# key: stest
+# name: sodium-test
+# --
+#[test]
+fn $1() {
+    let mut sodium_ctx = SodiumCtx::new();
+    let sodium_ctx = &mut sodium_ctx;
+    {
+        $2
+        let out = Arc::new(Mutex::new(Vec::new()));
+        let l;
+        {
+            let out = out.clone();
+            l = $3;
+        }
+        $4
+        {
+            let l = out.lock();
+            let out: &Vec<_> = l.as_ref().unwrap();
+            assert_eq!(vec![$5], *out);
+        }
+        l.unlisten();
+    }
+    assert_memory_freed(sodium_ctx);
+}

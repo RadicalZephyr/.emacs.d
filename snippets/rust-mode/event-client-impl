@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Event and Client impls
+# key: event-client-impl
+# --
+pub fn $1($2) -> $3Event {
+    ControlEvent::SetTemperature { heater, set_point }
+}
+
+pub async fn $1(&mut self, $2) -> Result<()> {
+    let event = $3Event::$0;
+    self.tx.send(event).await
+}

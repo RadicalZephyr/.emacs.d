@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: ftest
+# key: ftest
+# --
+#[test]
+fn $0() {
+    let sodium_ctx = SodiumCtx::new();
+    let sodium_ctx = &sodium_ctx;
+    let l;
+    {
+        let out = Arc::new(Mutex::new(Vec::new()));
+        {
+            let out = out.clone();
+        }
+        {
+            let l = out.lock();
+            let out: &Vec<i32> = l.as_ref().unwrap();
+            assert_eq!(
+                vec![],
+                *out
+            );
+        }
+    }
+    l.unlisten();
+    assert_memory_freed(sodium_ctx);
+}

@@ -1,0 +1,10 @@
+# key: iterator
+# name: Iterator
+# --
+impl Iterator for $1 {
+    type Item = $2;
+
+    fn next(&mut self) -> Option<$2> {
+        $0
+    }
+}
