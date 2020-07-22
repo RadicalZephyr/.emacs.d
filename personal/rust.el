@@ -33,5 +33,12 @@
 
 (add-hook 'rust-mode-hook #'radz-deactivate-exec-save)
 
+(defun radz-colorize-cargo-output ()
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
+(add-hook 'cargo-process-mode-hook
+          (lambda ()
+            (add-hook 'compilation-filter-hook #'radz-colorize-cargo-output)))
 
 ;;; rust.el ends here
