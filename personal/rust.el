@@ -23,15 +23,15 @@
 (define-key rust-mode-map (kbd "C-c C-c C-e") #'cargo-process-current-file-expand)
 (define-key rust-mode-map (kbd "C-c C-c M-e") #'cargo-process-current-file-expand-and-compile)
 
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
-(add-hook 'toml-mode-hook 'cargo-minor-mode)
+(add-hook 'rust-mode-hook #'cargo-minor-mode)
+(add-hook 'toml-mode-hook #'cargo-minor-mode)
 
 (add-hook 'racer-mode-hook #'company-mode)
 
 (defun radz-deactivate-exec-save ()
   (remove-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p))
 
-(add-hook 'rust-mode-hook 'radz-deactivate-exec-save)
+(add-hook 'rust-mode-hook #'radz-deactivate-exec-save)
 
 
 ;;; rust.el ends here
