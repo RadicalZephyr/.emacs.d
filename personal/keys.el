@@ -19,6 +19,12 @@
 (global-set-key (kbd "C-c c o") 'occur)
 (global-set-key (kbd "C-c c s") #'rg-menu)
 
+(global-set-key (kbd "C-c m l") #'mc/edit-lines)
+(global-set-key (kbd "C-c m a") #'mc/edit-beginnings-of-lines)
+(global-set-key (kbd "C-c m e") #'mc/edit-ends-of-lines)
+(global-set-key (kbd "C-c m d") #'mc/mark-all-dwim)
+(global-set-key (kbd "C-c m r") #'mc/mark-all-in-region-regexp)
+
 (global-set-key [kp-subtract] 'undo)
 (global-set-key [insert]    'overwrite-mode)
 (global-set-key [kp-insert] 'overwrite-mode)
