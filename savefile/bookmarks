@@ -1,0 +1,10 @@
+;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*- 
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+((".emacs personal"
+ (filename . "~/.emacs.d/personal/")
+ (front-context-string . "\n  -rw-rw-r--  1")
+ (rear-context-string . "25 14:54 keys.el")
+ (position . 1100))
+)
