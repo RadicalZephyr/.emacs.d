@@ -4,7 +4,7 @@
 (require 'erc)
 
 (setq
- erc-nick "geoffs"
+ erc-nick "radicalzephyr"
  erc-prompt-for-password nil
  erc-fill-column 89
  erc-autojoin-timing 'ident
