@@ -6,6 +6,10 @@
 
 ;;; Code:
 
+(prelude-require-packages '(rg))
+(require 'rg)
+
+(rg-enable-menu (kbd "C-c c s"))
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 (global-set-key (kbd "C-x o")   'ace-window)
 (global-set-key (kbd "C-x C-o") 'ace-window)
@@ -17,7 +21,6 @@
 (global-set-key (kbd "C-c c b") 'ibuffer)
 (global-set-key (kbd "C-c c g") 'find-grep-dired)
 (global-set-key (kbd "C-c c o") 'occur)
-(global-set-key (kbd "C-c c s") 'rg-menu)
 (global-set-key (kbd "C-c c l") #'sort-lines)
 
 (global-set-key (kbd "C-c m l") #'mc/edit-lines)

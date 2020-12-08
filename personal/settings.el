@@ -27,7 +27,6 @@
                             magit
                             magit-filenotify
                             paredit
-                            rg
                             smart-tab
                             smartparens
                             xclip
