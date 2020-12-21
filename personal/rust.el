@@ -92,7 +92,7 @@
         (goto-char (point-min))
         (let ((crate-use-statements (make-hash-table :test 'equal)))
          ;; Find all lines that look like: "^use \([a-zA-Z0-9]*?\)::\(.*?\);$"
-         (while (re-search-forward "^use \\([[:alpha:]_][[:alnum:]_]*\\)::\\([^{].*\\);$" nil t)
+         (while (re-search-forward "^use \\([[:alpha:]_][[:alnum:]_]*\\)::\\(.*\\);$" nil t)
            (let* ((crate-name (match-string 1))
                   (import (make-relative-import :match-markers (radz-rust-trim-match-data (match-data))
                                                 :import-string (match-string 2)))
