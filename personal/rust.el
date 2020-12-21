@@ -41,6 +41,47 @@
           (lambda ()
             (add-hook 'compilation-filter-hook #'radz-colorize-cargo-output)))
 
+(cl-defstruct relative-import
+  "Contains the match position data and crate for a single crate
+  relative import line."
+  match-markers
+  import-string)
+
+(defun radz-rust-replace-imports (crate-root relative-imports)
+  "Replace all single imports with one nested import.
+
+  For each group of imports with a common root crate: Write out
+  one `use <root>::{' Write out each associated second
+  capture match Write out `};'"
+  ;; Figure out where the first relative-import line for this crate was
+  (when (not (eql 1 (length relative-imports)))
+   (let ((target-marker (copy-marker (first (relative-import-match-markers (first relative-imports))))))
+     (dolist  (import relative-imports)
+       (let ((begin-marker (first (relative-import-match-markers import)))
+             (end-marker (second (relative-import-match-markers import))))
+         ;; Delete each current relative import
+         (delete-region begin-marker end-marker)
+         ;; Remove both markers
+         (set-marker begin-marker nil)
+         (set-marker end-marker nil)))
+     ;; Go to beginning of the first relative import
+     (goto-char target-marker)
+     ;; Format grouped import and insert
+     (insert (format "use %s::{" crate-root ))
+     (dolist (import relative-imports)
+       (insert (format "%s, " (relative-import-import-string import))))
+     (insert "};\n"))))
+
+(defun radz-rust-trim-match-data (match-markers)
+  "Extract only the whole pattern match markers and push the end
+  marker past the following newline."
+  (let ((begin-marker (first match-markers))
+        (end-marker (second match-markers)))
+    (set-marker end-marker (+ 1 end-marker))
+    (dolist (m (rest (rest match-markers)))
+      (set-marker m nil))
+    (list begin-marker end-marker)))
+
 (defun radz-rust-group-imports ()
   "Group Rust imports "
   (interactive)
@@ -51,21 +92,13 @@
         (goto-char (point-min))
         (let ((crate-use-statements (make-hash-table :test 'equal)))
          ;; Find all lines that look like: "^use \([a-zA-Z0-9]*?\)::\(.*?\);$"
-         (while (re-search-forward "^use \\([[:alpha:]_][[:alnum:]_]*\\)::\\([^{].*\\);" nil t)
-           (let* ((use-line-matches (match-data))
-                  (crate-name (match-string 1))
-                  (relative-import (match-string 2))
-                  (subcrate-imports (cons relative-import (gethash crate-name crate-use-statements '()))))
-             (puthash crate-name subcrate-imports crate-use-statements)))
-         (message "use matches: %s" crate-use-statements))
-
-        ;; Group by first capture match, recording buffer positions
-        ;;   An a-list of crate roots and import tails
-        ;;   ((<crate-root> . (<import-tail>...)...)
-        ;; For each group of imports with a common root crate:
-        ;;   Write out one "use <root>::{"
-        ;;   Write out each associated second capture match
-        ;;   Write out "};"
-        )))
+         (while (re-search-forward "^use \\([[:alpha:]_][[:alnum:]_]*\\)::\\([^{].*\\);$" nil t)
+           (let* ((crate-name (match-string 1))
+                  (import (make-relative-import :match-markers (radz-rust-trim-match-data (match-data))
+                                                :import-string (match-string 2)))
+                  (relative-imports (cons import (gethash crate-name crate-use-statements '()))))
+             ;; Group by first capture match, recording buffer positions
+             (puthash crate-name relative-imports crate-use-statements)))
+         (maphash (function radz-rust-replace-imports) crate-use-statements)))))
 
 ;;; rust.el ends here
