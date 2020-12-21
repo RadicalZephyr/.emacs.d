@@ -41,4 +41,31 @@
           (lambda ()
             (add-hook 'compilation-filter-hook #'radz-colorize-cargo-output)))
 
+(defun radz-rust-group-imports ()
+  "Group Rust imports "
+  (interactive)
+  ;; Check that this a '*.rs' file
+  (if (equal "rs" (file-name-extension buffer-file-name))
+      (save-excursion
+        ;; Go to beginning of buffer
+        (goto-char (point-min))
+        (let ((crate-use-statements (make-hash-table :test 'equal)))
+         ;; Find all lines that look like: "^use \([a-zA-Z0-9]*?\)::\(.*?\);$"
+         (while (re-search-forward "^use \\([[:alpha:]_][[:alnum:]_]*\\)::\\([^{].*\\);" nil t)
+           (let* ((use-line-matches (match-data))
+                  (crate-name (match-string 1))
+                  (relative-import (match-string 2))
+                  (subcrate-imports (cons relative-import (gethash crate-name crate-use-statements '()))))
+             (puthash crate-name subcrate-imports crate-use-statements)))
+         (message "use matches: %s" crate-use-statements))
+
+        ;; Group by first capture match, recording buffer positions
+        ;;   An a-list of crate roots and import tails
+        ;;   ((<crate-root> . (<import-tail>...)...)
+        ;; For each group of imports with a common root crate:
+        ;;   Write out one "use <root>::{"
+        ;;   Write out each associated second capture match
+        ;;   Write out "};"
+        )))
+
 ;;; rust.el ends here
