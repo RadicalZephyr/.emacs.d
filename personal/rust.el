@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(rust-mode flycheck-rust racer company-racer toml-mode))
+(prelude-require-packages '(rust-mode flycheck-rust flycheck-inline racer company-racer toml-mode))
 
 (require 'compile)
 (require 'rust-mode)
@@ -23,7 +23,6 @@
 (define-key rust-mode-map (kbd "C-c C-c C-e") #'cargo-process-current-file-expand)
 (define-key rust-mode-map (kbd "C-c C-c M-e") #'cargo-process-current-file-expand-and-compile)
 
-(add-hook 'rust-mode-hook #'cargo-minor-mode)
 (add-hook 'toml-mode-hook #'cargo-minor-mode)
 
 (add-hook 'racer-mode-hook #'company-mode)
@@ -40,6 +39,13 @@
 (add-hook 'cargo-process-mode-hook
           (lambda ()
             (add-hook 'compilation-filter-hook #'radz-colorize-cargo-output)))
+
+;; Flycheck Inline Setup
+
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+
+;; Relative import grouping
 
 (cl-defstruct relative-import
   "Contains the match position data and crate for a single crate
@@ -83,7 +89,7 @@
     (list begin-marker end-marker)))
 
 (defun radz-rust-group-imports ()
-  "Group Rust imports "
+  "Group Rust imports by crate."
   (interactive)
   ;; Check that this a '*.rs' file
   (if (equal "rs" (file-name-extension buffer-file-name))
