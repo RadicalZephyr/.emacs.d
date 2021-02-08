@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: queue-step
+# key: qs
+# --
+queue_step {
+    oid: 0,
+    interval: $1,
+    count: $2,
+    add: $3,
+},
