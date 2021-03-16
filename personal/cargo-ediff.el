@@ -100,7 +100,7 @@
      left-buf 1 reg-left-end
      right-buf 1 reg-right-end
      (list #'cargo-process--assert-eq-ediff-startup)
-     'ediff-regions-wordwise 'word-mode nil)))
+     'ediff-regions-wordwise 'word-mode '((ediff-split-window-function . split-window-horizontally)))))
 
 (defun cargo-process--add-assert-eq-buttons ()
   "Turn assert_eq output into clickable links in Cargo process output.
