@@ -4,24 +4,32 @@
 
 ;;; Code:
 
-(prelude-require-packages '(rust-mode flycheck-rust flycheck-inline racer company-racer toml-mode))
+(prelude-require-packages '(rust-mode lsp-mode flycheck-rust flycheck-inline racer company-racer toml-mode))
 
 (require 'compile)
 (require 'rust-mode)
 (require 'racer)
 (require 'toml-mode)
+(require 'lsp-mode)
 
 ;; Racer setup
 
 (setq racer-cmd (concat home-dir "/.cargo/bin/racer")
       racer-rust-src-path (concat home-dir "/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
       rust-format-on-save t
-      rust-rustfmt-bin "rustfmt")
+      rust-rustfmt-bin "rustfmt"
+      cargo-process--command-clippy "clippy")
 
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 (define-key rust-mode-map (kbd "C-c C-c M-k") #'cargo-process-clippy)
 (define-key rust-mode-map (kbd "C-c C-c C-e") #'cargo-process-current-file-expand)
 (define-key rust-mode-map (kbd "C-c C-c M-e") #'cargo-process-current-file-expand-and-compile)
+
+(define-key rust-mode-map (kbd "C-c C-l d") #'lsp-execute-code-action)
+(define-key rust-mode-map (kbd "C-c C-l e") #'lsp-rust-analyzer-expand-macro)
+(define-key rust-mode-map (kbd "C-c C-l r") #'lsp-rename)
+
+(add-hook 'rust-mode-hook #'lsp-deferred)
 
 (add-hook 'toml-mode-hook #'cargo-minor-mode)
 
