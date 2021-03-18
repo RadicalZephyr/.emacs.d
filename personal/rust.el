@@ -7,10 +7,12 @@
 (prelude-require-packages '(rust-mode lsp-mode flycheck-rust flycheck-inline racer company-racer toml-mode))
 
 (require 'compile)
+(require 'cargo-process)
 (require 'rust-mode)
 (require 'racer)
 (require 'toml-mode)
 (require 'lsp-mode)
+(require 'lsp-rust)
 
 ;; Racer setup
 
@@ -18,7 +20,9 @@
       racer-rust-src-path (concat home-dir "/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
       rust-format-on-save t
       rust-rustfmt-bin "rustfmt"
-      cargo-process--command-clippy "clippy")
+      cargo-process--command-clippy "clippy"
+      lsp-rust-analyzer-cargo-load-out-dirs-from-check t
+      lsp-rust-analyzer-proc-macro-enable t)
 
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 (define-key rust-mode-map (kbd "C-c C-c M-k") #'cargo-process-clippy)
