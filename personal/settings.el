@@ -88,6 +88,10 @@
 (ido-everywhere +1)
 (setq ido-use-filename-at-point nil)
 
+;; Undo prelude making selection deletion automatic
+(delete-selection-mode nil)
+(setq select-enable-primary nil)
+
 (require 'lentic)
 
 (require 'exec-path-from-shell)
