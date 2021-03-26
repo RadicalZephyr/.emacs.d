@@ -91,6 +91,7 @@
 ;; Undo prelude making selection deletion automatic
 (delete-selection-mode nil)
 (setq select-enable-primary nil)
+(mouse-avoidance-mode 'banish)
 
 (require 'lentic)
 
