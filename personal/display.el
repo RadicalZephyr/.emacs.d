@@ -21,6 +21,7 @@
  uniquify-buffer-name-style 'post-forward-angle-brackets
  visible-bell                t
  x-stretch-cursor            t
+ redisplay-dont-pause        nil
  )
 
 ;; Scrolling settings

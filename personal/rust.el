@@ -39,10 +39,12 @@
 
 (add-hook 'racer-mode-hook #'company-mode)
 
-(defun radz-deactivate-exec-save ()
+(defun radz-customize-rust-mode ()
+  (setq read-process-output-max (* 1024 1024)
+        lsp-idle-delay 0.75)
   (remove-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p))
 
-(add-hook 'rust-mode-hook #'radz-deactivate-exec-save)
+(add-hook 'rust-mode-hook #'radz-customize-rust-mode)
 
 (defun radz-colorize-cargo-output ()
   (let ((inhibit-read-only t))
