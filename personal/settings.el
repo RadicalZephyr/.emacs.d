@@ -85,8 +85,8 @@
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 
 ;; Ido/everywhere/ubiquitous settings
-(ido-everywhere +1)
-(setq ido-use-filename-at-point nil)
+;; (ido-everywhere +1)
+;; (setq ido-use-filename-at-point nil)
 
 ;; Undo prelude making selection deletion automatic
 (delete-selection-mode nil)
