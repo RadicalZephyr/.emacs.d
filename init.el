@@ -92,8 +92,8 @@ by Prelude.")
 (prelude-add-subfolders-to-load-path prelude-vendor-dir)
 
 ;; reduce the frequency of garbage collection by making it happen on
-;; each 50MB of allocated data (the default is on every 0.76MB)
-(setq gc-cons-threshold 1000000)
+;; each 20MB of allocated data (the default is on every 0.76MB)
+(setq gc-cons-threshold 20000000)
 
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
