@@ -22,6 +22,7 @@
 (global-set-key (kbd "C-c c g") 'find-grep-dired)
 (global-set-key (kbd "C-c c o") 'occur)
 (global-set-key (kbd "C-c c l") #'sort-lines)
+(global-set-key (kbd "C-c c n") 'goto-line)
 
 (global-set-key (kbd "C-c m l") #'mc/edit-lines)
 (global-set-key (kbd "C-c m a") #'mc/edit-beginnings-of-lines)
@@ -32,8 +33,6 @@
 (global-set-key [kp-subtract] 'undo)
 (global-set-key [insert]    'overwrite-mode)
 (global-set-key [kp-insert] 'overwrite-mode)
-
-(global-set-key (kbd "M-n") 'goto-line)
 
 (global-set-key (kbd "C-z") 'compile)
 (global-set-key (kbd "C-c /") 'comment-or-uncomment-region)
