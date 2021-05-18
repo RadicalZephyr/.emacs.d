@@ -220,4 +220,12 @@ Meant for use with all Lisp modes"
        '(("\\.\\(scm\\|stk\\|ss\\)\\'" . scheme-mode))
        (rassq-delete-all 'scheme-mode auto-mode-alist)))
 
+(defun radz-set-zoom-window-size ()
+  (interactive)
+  (let ((frame nil))
+   (set-frame-size frame
+                    281
+                    72)
+   (set-frame-position frame 8 0)))
+
 ;;; settings.el ends here
