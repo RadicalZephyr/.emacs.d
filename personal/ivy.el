@@ -4,6 +4,7 @@
                             flx
                             ivy
                             ivy-avy
+                            ivy-hydra
                             swiper
                             counsel
                             ))
