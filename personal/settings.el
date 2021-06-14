@@ -20,7 +20,6 @@
 
 ;; Packages and Stuff
 (prelude-require-packages '(;; Great utilities
-                            color-theme
                             exec-path-from-shell
                             git-timemachine
                             lentic
@@ -70,7 +69,6 @@
                             fsharp-mode
                             ;; groovy-mode
                             markdown-mode
-                            markdown-mode+
                             nginx-mode
                             systemd
 
