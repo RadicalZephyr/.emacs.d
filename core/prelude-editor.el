@@ -141,11 +141,11 @@
 (windmove-default-keybindings)
 
 ;; automatically save buffers associated with files on buffer switch
-;; and on windows switch
-(require 'super-save)
-;; add integration with ace-window
-(add-to-list 'super-save-triggers 'ace-window)
 ;; Disable because it behaves badly with rust-format-on-save
+;; and on windows switch
+;; (require 'super-save)
+;; add integration with ace-window
+;; (add-to-list 'super-save-triggers 'ace-window)
 ;; (super-save-mode +1)
 ;; (diminish 'super-save-mode)
 
