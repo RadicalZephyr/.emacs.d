@@ -34,7 +34,6 @@
 
 ;; Enable some modes
 (dolist (mode '(column-number-mode
-                global-linum-mode
                 ))
   (when (fboundp mode)
     (funcall mode)))
