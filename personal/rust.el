@@ -35,6 +35,7 @@
 
 (add-hook 'rust-mode-hook #'lsp-deferred)
 
+(add-hook 'rust-mode-hook #'cargo-minor-mode)
 (add-hook 'toml-mode-hook #'cargo-minor-mode)
 
 (add-hook 'racer-mode-hook #'company-mode)
@@ -50,9 +51,9 @@
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
 
-(add-hook 'cargo-process-mode-hook
-          (lambda ()
-            (add-hook 'compilation-filter-hook #'radz-colorize-cargo-output)))
+;; (add-hook 'cargo-process-mode-hook
+;;           (lambda ()
+;;             (add-hook 'compilation-filter-hook #'radz-colorize-cargo-output)))
 
 ;; Flycheck Inline Setup
 
