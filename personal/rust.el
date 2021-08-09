@@ -122,4 +122,15 @@
              (puthash crate-name relative-imports crate-use-statements)))
          (maphash (function radz-rust-replace-imports) crate-use-statements)))))
 
+
+(defvar radz-popped-compilation-error-regexp '())
+
+(defun radz-pop-compilation-regexp ()
+  (interactive)
+  (setq radz-popped-compilation-error-regexp
+        (cons (car compilation-error-regexp-alist-alist)
+              radz-popped-compilation-error-regexp))
+  (setq compilation-error-regexp-alist-alist
+        (cdr compilation-error-regexp-alist-alist)))
+
 ;;; rust.el ends here
