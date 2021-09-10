@@ -40,6 +40,16 @@
 
 (add-hook 'racer-mode-hook #'company-mode)
 
+(eval-after-load 'compile
+  '(progn
+     (setq compilation-error-regexp-alist-alist
+           (delete (cons 'cargo (alist-get 'cargo compilation-error-regexp-alist-alist))
+                   compilation-error-regexp-alist-alist))
+     (add-to-list 'compilation-error-regexp-alist-alist
+                  (list 'cargo
+                        "', \\(\\([^:]+\\):\\([0-9]+\\)\\)"
+                        2 3 nil nil 1))))
+
 (defun radz-customize-rust-mode ()
   (setq read-process-output-max (* 1024 1024)
         lsp-idle-delay 0.75)
