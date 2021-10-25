@@ -37,13 +37,13 @@
 (defconst cargo-process--shell-escape-code-regex "\\[[[:digit:];]+m\\(.*?\\)\\[0m"
   "A regular expression to match shell escape codes.")
 
-(defconst cargo-process--assert-eq-prefix-regex "thread '.*?' panicked at 'assertion failed: `(left == right)`"
+(defconst cargo-process--assert-eq-prefix-regex "thread '.*?' panicked at '.*?$"
   "A regular expression to match the assert-eq output prefix.")
 
-(defconst cargo-process--assert-eq-left-regex "left: `\\(.*?\\)`,"
+(defconst cargo-process--assert-eq-left-regex "left\\(?::\\| *=\\) *\\(.*?\\)\\(?:`,\\)?$"
   "A regular expression to match assert_eq left output.")
 
-(defconst cargo-process--assert-eq-right-regex "right: `\\(.*?\\)`',"
+(defconst cargo-process--assert-eq-right-regex "right\\(?::\\| *=\\) *\\(.*?\\)\\(?:`.\\)?$"
   "A regular expression to match assert_eq right output.")
 
 (defconst cargo-process--assert-diff-fmt-prefix "const _: T = "
@@ -110,9 +110,13 @@ Meant to be run as a `compilation-filter-hook'."
           (end (point)))
       (goto-char start)
       (while (re-search-forward cargo-process--assert-eq-prefix-regex end t)
-        (make-text-button (match-beginning 0)
-                          (match-end 0)
-                          :type 'rustc-assert-eq-diff)))))
+        (goto-char (match-end 0))
+        (insert "\n")
+        (let ((button-start (point)))
+          (insert "EDIFF")
+          (make-text-button button-start
+                            (point)
+                            :type 'rustc-assert-eq-diff))))))
 
 (defun cargo-process--setup-assert-eq-ediff ()
   (add-hook 'compilation-filter-hook #'cargo-process--add-assert-eq-buttons))
