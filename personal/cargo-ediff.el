@@ -40,10 +40,10 @@
 (defconst cargo-process--assert-eq-prefix-regex "thread '.*?' panicked at '.*?$"
   "A regular expression to match the assert-eq output prefix.")
 
-(defconst cargo-process--assert-eq-left-regex "left\\(?::\\| *=\\) *\\(.*?\\)\\(?:`,\\)?$"
+(defconst cargo-process--assert-eq-left-regex "left\\(?::\\| *=\\) *`?\\([^`]*\\)\\(?:`,\\)?$"
   "A regular expression to match assert_eq left output.")
 
-(defconst cargo-process--assert-eq-right-regex "right\\(?::\\| *=\\) *\\(.*?\\)\\(?:`.\\)?$"
+(defconst cargo-process--assert-eq-right-regex "right\\(?::\\| *=\\) *`?\\([^`]*\\)\\(?:`,\\)?.*$"
   "A regular expression to match assert_eq right output.")
 
 (defconst cargo-process--assert-diff-fmt-prefix "const _: T = "
@@ -89,7 +89,7 @@
   "Action called when the user activates assert-eq diff BUTTON"
   (let* ((end (button-end button))
          (left-region (cargo-process--get-assert-eq-region end cargo-process--assert-eq-left-regex))
-         (right-region (cargo-process--get-assert-eq-region end cargo-process--assert-eq-right-regex))
+         (right-region (cargo-process--get-assert-eq-region (first left-region) cargo-process--assert-eq-right-regex))
          (left-buf (generate-new-buffer "LEFT"))
          (right-buf (generate-new-buffer "RIGHT"))
          (reg-left-end (cargo-process--copy-region-to-buffer left-buf left-region))
