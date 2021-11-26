@@ -70,8 +70,7 @@
     flycheck
     gist
     git-timemachine
-    gitconfig-mode
-    gitignore-mode
+    gitconfig
     guru-mode
     hl-todo
     imenu-anywhere
