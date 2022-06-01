@@ -1,3 +1,3 @@
 (defun radz-start-work ()
   (interactive)
-  (desktop-change-dir "/home/zephyr/work/provel/printer/control/"))
+  (desktop-change-dir (expand-file-name "work/provel/printer/control/" home-dir)))
