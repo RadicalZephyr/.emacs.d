@@ -26,4 +26,8 @@
      (setq anaconda-mode-installation-directory
            (expand-file-name "anaconda-mode" prelude-vendor-dir))))
 
+(eval-after-load 'multiple-cursors
+  '(progn
+     (setq mc/list-file (expand-file-name ".mc-lists.el" prelude-personal-dir))))
+
 ;;; config-files.el ends here
