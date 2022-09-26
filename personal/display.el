@@ -4,7 +4,7 @@
 (defun radz-reset-default-font-height ()
   "Set the font height to my favored default."
   (interactive)
-  (set-face-attribute 'default nil :height 110))
+  (set-face-attribute 'default nil :height 140))
 
 ;; Change default font size for everything forever
 (radz-reset-default-font-height)
