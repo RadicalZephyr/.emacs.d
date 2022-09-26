@@ -30,6 +30,11 @@
 
 (require 'ox-latex)
 (require 'ox-altacv)
+(require 'ox-extra)
+
+(eval-after-load 'ox-extra
+  '(progn
+     (ox-extras-activate '(latex-header-blocks ignore-headlines))))
 
 ;; Setup adapted from https://www.aidanscannell.com/post/org-mode-resume/
 (eval-after-load 'ox-latex
