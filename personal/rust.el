@@ -68,8 +68,8 @@
 
 ;; Flycheck Inline Setup
 
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+;; (with-eval-after-load 'flycheck
+;;   (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 
 ;; Relative import grouping
 
