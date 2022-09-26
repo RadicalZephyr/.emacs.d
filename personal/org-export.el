@@ -29,6 +29,7 @@
              (expand-file-name "vendor/ox-cv" prelude-dir))
 
 (require 'ox-latex)
+(require 'ox-altacv)
 
 ;; Setup adapted from https://www.aidanscannell.com/post/org-mode-resume/
 (eval-after-load 'ox-latex
