@@ -25,6 +25,9 @@
 
 (prelude-require-packages '(ox-pandoc ox-reveal ox-timeline))
 
+(add-to-list 'load-path
+             (expand-file-name "vendor/ox-cv" prelude-dir))
+
 (require 'ox-latex)
 
 ;; Setup adapted from https://www.aidanscannell.com/post/org-mode-resume/

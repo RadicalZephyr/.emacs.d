@@ -156,8 +156,7 @@ Meant for use with all Lisp modes"
 
 ;; JDEE setups
 (add-to-list 'load-path
-             (concat (file-name-as-directory prelude-personal-dir)
-                     "jdee-2.4.1/lisp"))
+             (expand-file-name "vendor/jdee-2.4.1/lisp" prelude-dir))
 (load "jde")
 
 (setq  jde-import-auto-sort t
