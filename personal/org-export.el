@@ -54,6 +54,7 @@
              "dvi"
              "entoc"
              "fdb_latexmk"
+             "figlist"
              "fls"
              "glg"
              "gls"
@@ -65,6 +66,7 @@
              "nav"
              "out"
              "ps"
+             "ptc"
              "run.xml"
              "snm"
              "spl"
@@ -72,6 +74,7 @@
              "toc"
              "vrb"
              "xmpi"
+             "xdv"
              ))
 
      ;; Why is this here????
