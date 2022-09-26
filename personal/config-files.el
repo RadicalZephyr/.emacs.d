@@ -30,4 +30,8 @@
   '(progn
      (setq mc/list-file (expand-file-name ".mc-lists.el" prelude-personal-dir))))
 
+(eval-after-load 'abbrev
+  '(progn
+     (setq abbrev-file-name (expand-file-name ".abbrev_defs" prelude-personal-dir))))
+
 ;;; config-files.el ends here
