@@ -8,4 +8,7 @@
 
 (setq home-dir (getenv "HOME"))
 
+(add-to-list 'package-archives
+             '("non-gnu" . "https://elpa.nongnu.org/nongnu/"))
+
 ;;; globals.el ends here
