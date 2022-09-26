@@ -41,11 +41,38 @@
            ;; org-latex-prefer-user-labels t
 
            ;; deleted unwanted file extensions after latexMK
-           org-latex-logfiles-extensions '("lof" "lot" "tex~" "aux" "idx" "log"
-                                           "out" "toc" "nav" "snm" "vrb" "dvi"
-                                           "fdb_latexmk" "blg" "brf" "fls" "entoc"
-                                           "ps" "spl" "bbl" "xmpi" "run.xml" "bcf"
-                                           "acn" "acr" "alg" "glg" "gls" "ist"))
+           org-latex-logfiles-extensions
+           '(
+             "acn"
+             "acr"
+             "alg"
+             "aux"
+             "bbl"
+             "bcf"
+             "blg"
+             "brf"
+             "dvi"
+             "entoc"
+             "fdb_latexmk"
+             "fls"
+             "glg"
+             "gls"
+             "idx"
+             "ist"
+             "lof"
+             "log"
+             "lot"
+             "nav"
+             "out"
+             "ps"
+             "run.xml"
+             "snm"
+             "spl"
+             "tex~"
+             "toc"
+             "vrb"
+             "xmpi"
+             ))
 
      ;; Why is this here????
      (unless (boundp 'org-latex-classes)
