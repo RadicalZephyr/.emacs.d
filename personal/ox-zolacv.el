@@ -49,6 +49,7 @@
     (:photo "PHOTO" nil nil parse)
     (:gitlab "GITLAB" nil nil parse)
     (:github "GITHUB" nil nil parse)
+    (:stack-overflow "STACKOVERFLOW" nil nil parse)
     (:linkedin "LINKEDIN" nil nil parse)
     (:with-email nil "email" t t)
     )
@@ -125,6 +126,7 @@ holding export options."
 
                      '((:github "github" "www.github.com")
                        (:gitlab "gitlab" "www.gitlab.com")
+                       (:stack-overflow "stack-overflow" "www.stackoverflow.com"/users)
                        (:linkedin "linkedin" "www.linkedin.com/in"))
                      "")
           "</ul>\n\n"
