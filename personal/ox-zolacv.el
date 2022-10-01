@@ -29,7 +29,6 @@
 
 ;;; Code:
 (require 'ox-hugo)
-(require 'org-cv-utils)
 
 ;;; User-Configurable Variables
 
@@ -57,11 +56,51 @@
                      (inner-template . org-zolacv-inner-template)))
 
 
+(defun org-zolacv-utils--org-timestamp-to-shortdate (date_str)
+  "Format orgmode timestamp DATE_STR  into a short form date.
+Other strings are just returned unmodified
+
+e.g. <2012-08-12 Mon> => Aug 2012
+today => today"
+  (if (string-match (org-re-timestamp 'all) date_str)
+      (let* ((dte (org-parse-time-string date_str))
+             (month (nth 4 dte))
+             (year (nth 5 dte))) ;;'(02 07 2015)))
+        (concat
+         (calendar-month-name month 'abbreviate) " " (number-to-string year)))
+    date_str))
+
+(defun org-zolacv-utils--format-time-window (from-date to-date)
+  "Join date strings in a time window.
+FROM-DATE -- TO-DATE
+in case TO-DATE is nil return Present.
+If both dates are the same, return just FROM-DATE"
+  (let ((from (when from-date (org-zolacv-utils--org-timestamp-to-shortdate from-date)))
+        (to (if (not to-date) "Present"
+              (org-zolacv-utils--org-timestamp-to-shortdate to-date))))
+
+    (if from
+        (if (string= from to)
+            from
+          (concat from " -- " to))
+      "")))
+
+(defun org-zolacv-utils--parse-cventry (headline info)
+  "Return alist describing the entry in HEADLINE.
+INFO is a plist used as a communication channel."
+  (let ((title (org-export-data (org-element-property :title headline) info)))
+    `((title . ,title)
+      (from-date . ,(or (org-element-property :FROM headline)
+                        (error "No FROM property provided for cventry %s" title)))
+      (to-date . ,(org-element-property :TO headline))
+      (employer . ,(org-element-property :EMPLOYER headline))
+      (location . ,(or (org-element-property :LOCATION headline) "")))))
+
 (defun org-zolacv--format-cventry (headline contents info)
   "Format HEADLINE as as cventry.
 CONTENTS holds the contents of the headline.  INFO is a plist used
 as a communication channel."
-  (let* ((entry (org-cv-utils--parse-cventry headline info))
+  (let* ((entry (org-zolacv-utils--parse-cventry headline info))
          (loffset (string-to-number (plist-get info :hugo-level-offset))) ;"" -> 0, "0" -> 0, "1" -> 1, ..
          (level (org-export-get-relative-level headline info))
          (title (concat (make-string (+ loffset level) ?#) " " (alist-get 'title entry))))
@@ -77,7 +116,7 @@ as a communication channel."
 " title
 (alist-get 'employer entry)
 (alist-get 'location entry)
-(org-cv-utils--format-time-window (alist-get 'from-date entry) (alist-get 'to-date entry))
+(org-zolacv-utils--format-time-window (alist-get 'from-date entry) (alist-get 'to-date entry))
 contents)))
 
 
