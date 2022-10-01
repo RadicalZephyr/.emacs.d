@@ -23,13 +23,15 @@
 
 ;;; Code:
 
-(prelude-require-packages '(ox-pandoc ox-reveal ox-timeline))
+(prelude-require-packages '(ox-hugo ox-pandoc ox-reveal ox-timeline))
 
 (add-to-list 'load-path
              (expand-file-name "vendor/ox-cv" prelude-dir))
 
 (require 'ox-latex)
 (require 'ox-altacv)
+(require 'ox-hugo)
+(require 'ox-hugocv)
 (require 'ox-extra)
 
 (eval-after-load 'ox-extra
