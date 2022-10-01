@@ -43,7 +43,7 @@
   '(progn
      (setq org-latex-pdf-process
            ;; Use latexmk with xelatex
-           '("latexmk -pvc -pdfxe %f")
+           '("latexmk -pv -pdfxe %f")
 
            ;; stop org adding hypersetup{author..} to latex export
            org-latex-with-hyperref nil
