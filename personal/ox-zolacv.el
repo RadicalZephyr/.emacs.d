@@ -93,8 +93,27 @@ INFO is a plist used as a communication channel."
       (from-date . ,(or (org-element-property :FROM headline)
                         (error "No FROM property provided for cventry %s" title)))
       (to-date . ,(org-element-property :TO headline))
+      (tech-tags . ,(org-element-property :TECH headline))
       (employer . ,(org-element-property :EMPLOYER headline))
       (location . ,(or (org-element-property :LOCATION headline) "")))))
+
+(defun org-zolacv-utils--format-tags (tags)
+  "Return a string of HTML formatting the given list of tags."
+  (if tags
+      (concat
+       "
+    <li class=\"fa fa-tags\">
+      <ul class=\"cventry-tags\">
+"
+       (mapconcat (lambda (tag)
+                    (format "        <li class=\"cventry-tag\">%s</li>" tag))
+                  (split-string tags " ")
+                  "\n")
+       "
+      </ul>
+    </li>
+")
+    ""))
 
 (defun org-zolacv--format-cventry (headline contents info)
   "Format HEADLINE as as cventry.
@@ -109,7 +128,7 @@ as a communication channel."
 <ul class=\"cventry\">
     <li class=\"fa fa-building\"> %s</li>
     <li class=\"fa fa-map-marker\"> %s</li>
-    <li class=\"fa fa-calendar\"> %s</li>
+    <li class=\"fa fa-calendar\"> %s</li>%s
 </ul>
 
 %s
@@ -117,6 +136,7 @@ as a communication channel."
 (alist-get 'employer entry)
 (alist-get 'location entry)
 (org-zolacv-utils--format-time-window (alist-get 'from-date entry) (alist-get 'to-date entry))
+(org-zolacv-utils--format-tags (alist-get 'tech-tags entry))
 contents)))
 
 
