@@ -168,6 +168,15 @@ holding export options."
           ;; homepage
           (let ((homepage (org-export-data (plist-get info :homepage) info)))
             (when (org-string-nw-p homepage) (format "<li class=\"fa fa-globe\"><a href=\"https://%s\"> %s</a></li>\n" homepage homepage)))
+          ;; stack-overflow
+
+          (let ((stack-overflow (org-export-data (plist-get info :stack-overflow) info)))
+            (when (org-string-nw-p stack-overflow)
+              (let ((so-data (split-string stack-overflow " ")))
+               (format "<li class=\"fa fa-stack-overflow\"><a href=\"https://www.stackoverflow.com/users/%s/%s\"> %s</a></li>\n"
+                       (nth 0 so-data)
+                       (nth 1 so-data)
+                       (capitalize (nth 1 so-data))))))
           ;; social media
           (mapconcat (lambda (social-network)
 
@@ -185,7 +194,6 @@ holding export options."
 
                      '((:github "github" "www.github.com")
                        (:gitlab "gitlab" "www.gitlab.com")
-                       (:stack-overflow "stack-overflow" "www.stackoverflow.com"/users)
                        (:linkedin "linkedin" "www.linkedin.com/in"))
                      "")
           "</ul>\n\n"
