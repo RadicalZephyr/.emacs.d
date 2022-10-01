@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2018 Free Software Foundation, Inc.
 
-;; Author: Oscar Najera <hi AT oscarnajera.com DOT com>
+;; Author: Oscar Najera <hi AT oscarnajera.com DOT com>, Zefira Shannon <zefira AT hey DOT com>
 ;; Keywords: org, wp, tex
 
 ;; This file is not part of GNU Emacs.
