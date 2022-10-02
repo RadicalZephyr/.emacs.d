@@ -85,6 +85,14 @@ If both dates are the same, return just FROM-DATE"
           (concat from " -- " to))
       "")))
 
+(defun org-zolacv-utils--parse-cvproject (headline info)
+  "Return alist describing the entry in HEADLINE.
+INFO is a plist used as a communication channel."
+  (let ((title (org-export-data (org-element-property :title headline) info)))
+    `((title . ,title)
+      (tech-tags . ,(org-element-property :TECH headline))
+      (url . ,(org-element-property :URL headline)))))
+
 (defun org-zolacv-utils--parse-cventry (headline info)
   "Return alist describing the entry in HEADLINE.
 INFO is a plist used as a communication channel."
@@ -114,6 +122,27 @@ INFO is a plist used as a communication channel."
     </li>
 ")
     ""))
+
+(defun org-zolacv--format-cvproject (headline contents info)
+  "Format HEADLINE as as cvproject.
+CONTENTS holds the contents of the headline.  INFO is a plist used
+as a communication channel."
+  (let* ((entry (org-zolacv-utils--parse-cvproject headline info))
+         (loffset (string-to-number (plist-get info :hugo-level-offset))) ;"" -> 0, "0" -> 0, "1" -> 1, ..
+         (level (org-export-get-relative-level headline info))
+         (title (concat (make-string (+ loffset level) ?#) " " (alist-get 'title entry))))
+    (format "\n%s
+
+<ul class=\"cventry\">
+  <li class=\"fa fa-home\"> <a href=\"%s\">%s</a></li>%s
+
+%s
+"
+            title
+            (alist-get 'url entry)
+            (alist-get 'url entry)
+            (org-zolacv-utils--format-tags (alist-get 'tech-tags entry))
+            contents)))
 
 (defun org-zolacv--format-cventry (headline contents info)
   "Format HEADLINE as as cventry.
@@ -153,6 +182,8 @@ as a communication channel."
        ;; is a cv entry
        ((equal environment "cventry")
         (org-zolacv--format-cventry headline contents info))
+       ((equal environment "cvproject")
+        (org-zolacv--format-cvproject headline contents info))
        ((org-export-with-backend 'hugo headline contents info))))))
 
 (defun org-zolacv-inner-template (contents info)
