@@ -23,73 +23,73 @@
 
 ;;; Code:
 
-(prelude-require-packages '(ox-hugo ox-pandoc ox-reveal ox-timeline))
+;; (prelude-require-packages '(ox-hugo ox-pandoc ox-reveal ox-timeline))
 
-(add-to-list 'load-path
-             (expand-file-name "vendor/ox-cv" prelude-dir))
+;; (add-to-list 'load-path
+;;              (expand-file-name "vendor/ox-cv" prelude-dir))
 
-(require 'ox-latex)
-(require 'ox-altacv)
-(require 'ox-hugo)
-(require 'ox-hugocv)
-(require 'ox-extra)
+;; (require 'ox-latex)
+;; (require 'ox-altacv)
+;; (require 'ox-hugo)
+;; ;; (require 'ox-hugocv)
+;; (require 'ox-extra)
 
-(eval-after-load 'ox-extra
-  '(progn
-     (ox-extras-activate '(latex-header-blocks ignore-headlines))))
+;; (eval-after-load 'ox-extra
+;;   '(progn
+;;      (ox-extras-activate '(latex-header-blocks ignore-headlines))))
 
-;; Setup adapted from https://www.aidanscannell.com/post/org-mode-resume/
-(eval-after-load 'ox-latex
-  '(progn
-     (setq org-latex-pdf-process
-           ;; Use latexmk with xelatex
-           '("latexmk -pv -pdfxe %f")
+;; ;; Setup adapted from https://www.aidanscannell.com/post/org-mode-resume/
+;; (eval-after-load 'ox-latex
+;;   '(progn
+;;      (setq org-latex-pdf-process
+;;            ;; Use latexmk with xelatex
+;;            '("latexmk -pv -pdfxe %f")
 
-           ;; stop org adding hypersetup{author..} to latex export
-           org-latex-with-hyperref nil
+;;            ;; stop org adding hypersetup{author..} to latex export
+;;            org-latex-with-hyperref nil
 
-           ;;
-           ;; org-latex-prefer-user-labels t
+;;            ;;
+;;            ;; org-latex-prefer-user-labels t
 
-           ;; deleted unwanted file extensions after latexMK
-           org-latex-logfiles-extensions
-           '(
-             "acn"
-             "acr"
-             "alg"
-             "aux"
-             "bbl"
-             "bcf"
-             "blg"
-             "brf"
-             "dvi"
-             "entoc"
-             "fdb_latexmk"
-             "figlist"
-             "fls"
-             "glg"
-             "gls"
-             "idx"
-             "ist"
-             "lof"
-             "log"
-             "lot"
-             "nav"
-             "out"
-             "ps"
-             "ptc"
-             "run.xml"
-             "snm"
-             "spl"
-             "tex~"
-             "toc"
-             "vrb"
-             "xmpi"
-             "xdv"
-             ))
+;;            ;; deleted unwanted file extensions after latexMK
+;;            org-latex-logfiles-extensions
+;;            '(
+;;              "acn"
+;;              "acr"
+;;              "alg"
+;;              "aux"
+;;              "bbl"
+;;              "bcf"
+;;              "blg"
+;;              "brf"
+;;              "dvi"
+;;              "entoc"
+;;              "fdb_latexmk"
+;;              "figlist"
+;;              "fls"
+;;              "glg"
+;;              "gls"
+;;              "idx"
+;;              "ist"
+;;              "lof"
+;;              "log"
+;;              "lot"
+;;              "nav"
+;;              "out"
+;;              "ps"
+;;              "ptc"
+;;              "run.xml"
+;;              "snm"
+;;              "spl"
+;;              "tex~"
+;;              "toc"
+;;              "vrb"
+;;              "xmpi"
+;;              "xdv"
+;;              ))
 
-     ;; Why is this here????
-     (unless (boundp 'org-latex-classes)
-       (setq org-latex-classes nil))))
+;;      ;; Why is this here????
+;;      (unless (boundp 'org-latex-classes)
+;;        (setq org-latex-classes nil))))
 
 ;;; org-export.el ends here
