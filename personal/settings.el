@@ -95,8 +95,9 @@
 
 (require 'lentic)
 
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
+(when (memq window-system '(mac ns))
+  (require 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
 
 ;; Yasnippet setups
 (require 'yasnippet)
