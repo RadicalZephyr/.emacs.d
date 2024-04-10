@@ -30,7 +30,7 @@
 ;;; Code:
 
 (require 'prelude-programming)
-(prelude-require-packages '(tide))
+(prelude-require-packages '(typescript-mode tide))
 
 (require 'typescript-mode)
 
