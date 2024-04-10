@@ -28,7 +28,6 @@
                             paredit
                             smart-tab
                             smartparens
-                            xclip
 
                             ;; Common lisp stuff
                             slime
