@@ -93,7 +93,9 @@
 
 ;;; python-mode setup
 
-(when (fboundp 'exec-path-from-shell-copy-env)
+(when (and
+       (not (eq window-system 'w32))
+       (fboundp 'exec-path-from-shell-copy-env))
   (exec-path-from-shell-copy-env "PYTHONPATH"))
 
 (defun prelude-python-mode-defaults ()
