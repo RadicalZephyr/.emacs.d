@@ -144,4 +144,20 @@
   (setq compilation-error-regexp-alist-alist
         (cdr compilation-error-regexp-alist-alist)))
 
+(defun radz-inline-module ()
+  (interactive)
+  (re-search-forward "mod \\(.*?\\);")
+  (let* ((end-marker (match-end 0))
+         (mod-name (match-string 1))
+         (mod-filename (locate-file mod-name (list default-directory) '(".rs" "")
+                                    (lambda (f) (if (file-directory-p f) 'dir-ok t)))))
+    (if mod-filename
+        (save-mark-and-excursion
+          (goto-char end-marker)
+          (insert-char ?})
+          (with-restriction (- end-marker 1) end-marker
+                            (insert-file-contents mod-filename nil nil nil t))
+          (insert " {\n"))
+      (message "could not find file %s" mod-filename))))
+
 ;;; rust.el ends here
