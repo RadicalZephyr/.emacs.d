@@ -1,15 +1,10 @@
-;;; keys --- My personal keybindings
+(require 'use-package)
 
-;;; Commentary:
+(use-package rg
+  :ensure t
+  :config
+  (rg-enable-menu (kbd "C-c c s")))
 
-;; Lots of little personalizations that I've built up over the years
-
-;;; Code:
-
-(prelude-require-packages '(rg))
-(require 'rg)
-
-(rg-enable-menu (kbd "C-c c s"))
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 (global-set-key (kbd "C-x o")   'ace-window)
 (global-set-key (kbd "C-x C-o") 'ace-window)
@@ -47,7 +42,7 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 
 ;; Swap line upwards
-(global-set-key (kbd "C-c t")
+(global-set-key (kbd "C-c C-t")
                 (lambda ()
                   (interactive)
                   (transpose-lines -1)))
@@ -63,4 +58,3 @@
                   (scroll-up 1)))
 
 (global-set-key (kbd "M-`") 'other-frame)
-;;; keys.el ends here
