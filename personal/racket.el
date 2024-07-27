@@ -1,14 +1,9 @@
-;;; racket.el --- My racket configuration
+(require 'use-package)
+(require 'paredit)
 
-;;; Commentary:
-
-;;; Code:
-
-(prelude-require-packages '(racket-mode))
-
-(require 'racket-mode)
-
-(setq auto-mode-alist
-      (append '(("\\.rkt\\'" . racket-mode)) auto-mode-alist))
-
-;;; racket.el ends here
+(use-package racket-mode
+  :ensure t
+  :mode "\\.rkt\\'"
+  :config
+  (dolist (k '("RET" "C-m" "C-j"))
+    (define-key paredit-mode-map (kbd k) nil)))
