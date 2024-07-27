@@ -1,4 +1,5 @@
 (require 'use-package)
+(require 'hideshow)
 
 (use-package jtsx
   :ensure t
