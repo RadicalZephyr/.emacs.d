@@ -1,6 +1,15 @@
 (require 'use-package)
 (require 'hideshow)
 
+(use-package tide
+  :ensure t
+  :after (company flycheck jtsx)
+  :hook ((jtsx-jsx-mode . tide-setup)
+         (jtsx-typescript-mode . tide-setup)
+         (jtsx-tsx-mode . tide-setup)
+         (jtsx-typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
+
 (use-package jtsx
   :ensure t
   :mode (("\\.jsx?\\'" . jtsx-jsx-mode)
