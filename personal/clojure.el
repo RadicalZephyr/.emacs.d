@@ -72,4 +72,5 @@ This uses the Leiningen convention of appending '-test' to the namespace name."
   (trace-forms 'defun)
   (at-keyframes 'defun)
   (against-background 'defun)
-  (emit-wrap 'defun))
+  (emit-wrap 'defun)
+  (pb-card 0))
