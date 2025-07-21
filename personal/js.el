@@ -8,7 +8,11 @@
          (jtsx-typescript-mode . tide-setup)
          (jtsx-tsx-mode . tide-setup)
          (jtsx-typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save)))
+         (before-save . tide-format-before-save))
+
+  :config
+  (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
+  (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode))
 
 (use-package jtsx
   :ensure t
