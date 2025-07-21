@@ -25,8 +25,8 @@
          (jtsx-typescript-mode . hs-minor-mode))
   :custom
   ;; Optional customizations
-  (js-indent-level 4)
-  (typescript-ts-mode-indent-offset 4)
+  (js-indent-level 2)
+  (typescript-ts-mode-indent-offset 2)
   (jtsx-switch-indent-offset 0)
   (jtsx-indent-statement-block-regarding-standalone-parent nil)
   (jtsx-jsx-element-move-allow-step-out t)
