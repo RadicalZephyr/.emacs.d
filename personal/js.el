@@ -1,6 +1,13 @@
 (require 'use-package)
 (require 'hideshow)
 
+(use-package prettier-js
+  :ensure t
+  :after (jtsx)
+  :hook ((jtsx-jsx-mode . prettier-js-mode)
+         (jtsx-typescript-mode . prettier-js-mode)
+         (jtsx-tsx-mode . prettier-js-mode)))
+
 (use-package tide
   :ensure t
   :after (company flycheck jtsx)
