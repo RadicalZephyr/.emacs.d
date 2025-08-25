@@ -14,8 +14,7 @@
   :hook ((jtsx-jsx-mode . tide-setup)
          (jtsx-typescript-mode . tide-setup)
          (jtsx-tsx-mode . tide-setup)
-         (jtsx-typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save))
+         (jtsx-typescript-mode . tide-hl-identifier-mode))
 
   :config
   (flycheck-add-mode 'javascript-eslint 'jtsx-jsx-mode)
