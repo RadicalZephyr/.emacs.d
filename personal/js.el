@@ -18,6 +18,7 @@
          (before-save . tide-format-before-save))
 
   :config
+  (flycheck-add-mode 'javascript-eslint 'jtsx-jsx-mode)
   (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
   (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode))
 
