@@ -40,13 +40,17 @@
 
 (use-package jtsx
   :ensure t
+  :after (lsp-mode)
   :mode (("\\.[cm]jsx?\\'" . jtsx-jsx-mode)
          ("\\.tsx\\'" . jtsx-tsx-mode)
          ("\\.ts\\'" . jtsx-typescript-mode))
   :commands jtsx-install-treesit-language
   :hook ((jtsx-jsx-mode . hs-minor-mode)
          (jtsx-tsx-mode . hs-minor-mode)
-         (jtsx-typescript-mode . hs-minor-mode))
+         (jtsx-typescript-mode . hs-minor-mode)
+         (jtsx-jsx-mode . lsp-deferred)
+         (jtsx-tsx-mode . lsp-deferred)
+         (jtsx-typescript-mode . lsp-deferred))
   :custom
   ;; Optional customizations
   (js-indent-level 4)
