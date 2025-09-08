@@ -8,35 +8,35 @@
          (jtsx-typescript-mode . prettier-js-mode)
          (jtsx-tsx-mode . prettier-js-mode)))
 
-(use-package tide
-  :ensure t
-  :after (company flycheck jtsx)
-  :hook ((jtsx-jsx-mode . tide-setup)
-         (jtsx-typescript-mode . tide-setup)
-         (jtsx-tsx-mode . tide-setup)
-         (jtsx-typescript-mode . tide-hl-identifier-mode))
+;; (use-package tide
+;;   :ensure t
+;;   :after (company flycheck jtsx)
+;;   :hook ((jtsx-jsx-mode . tide-setup)
+;;          (jtsx-typescript-mode . tide-setup)
+;;          (jtsx-tsx-mode . tide-setup)
+;;          (jtsx-typescript-mode . tide-hl-identifier-mode))
 
-  :config
-  (flycheck-add-mode 'javascript-eslint 'jtsx-jsx-mode)
-  (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
-  (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode)
+;;   :config
+;;   (flycheck-add-mode 'javascript-eslint 'jtsx-jsx-mode)
+;;   (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
+;;   (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode)
 
-  (defun tide-bind-keys-to-mode-map (mode-map)
-    "Bind useful keys to MODE-MAP"
-    (define-key mode-map (kbd "C-c C-l d") 'tide-documentation-at-point)
-    (define-key mode-map (kbd "C-c C-l D") 'tide-jsdoc-template)
-    (define-key mode-map (kbd "C-c C-l r") 'tide-rename-symbol)
-    (define-key mode-map (kbd "C-c C-l ?") 'tide-references)
-    (define-key mode-map (kbd "C-c C-l x") 'tide-restart-server))
+;;   (defun tide-bind-keys-to-mode-map (mode-map)
+;;     "Bind useful keys to MODE-MAP"
+;;     (define-key mode-map (kbd "C-c C-l d") 'tide-documentation-at-point)
+;;     (define-key mode-map (kbd "C-c C-l D") 'tide-jsdoc-template)
+;;     (define-key mode-map (kbd "C-c C-l r") 'tide-rename-symbol)
+;;     (define-key mode-map (kbd "C-c C-l ?") 'tide-references)
+;;     (define-key mode-map (kbd "C-c C-l x") 'tide-restart-server))
 
-  (defun jtsx-bind-keys-to-jtsx-jsx-mode-map ()
-    (tide-bind-keys-to-mode-map jtsx-jsx-mode-map))
+;;   (defun jtsx-bind-keys-to-jtsx-jsx-mode-map ()
+;;     (tide-bind-keys-to-mode-map jtsx-jsx-mode-map))
 
-  (defun jtsx-bind-keys-to-jtsx-tsx-mode-map ()
-    (tide-bind-keys-to-mode-map jtsx-tsx-mode-map))
+;;   (defun jtsx-bind-keys-to-jtsx-tsx-mode-map ()
+;;     (tide-bind-keys-to-mode-map jtsx-tsx-mode-map))
 
-  (add-hook 'jtsx-jsx-mode-hook 'tide-bind-keys-to-jtsx-jsx-mode-map)
-  (add-hook 'jtsx-tsx-mode-hook 'tide-bind-keys-to-jtsx-tsx-mode-map))
+;;   (add-hook 'jtsx-jsx-mode-hook 'tide-bind-keys-to-jtsx-jsx-mode-map)
+;;   (add-hook 'jtsx-tsx-mode-hook 'tide-bind-keys-to-jtsx-tsx-mode-map))
 
 (use-package jtsx
   :ensure t
