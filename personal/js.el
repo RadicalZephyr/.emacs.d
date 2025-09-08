@@ -40,7 +40,7 @@
 
 (use-package jtsx
   :ensure t
-  :mode (("\\.jsx?\\'" . jtsx-jsx-mode)
+  :mode (("\\.[cm]jsx?\\'" . jtsx-jsx-mode)
          ("\\.tsx\\'" . jtsx-tsx-mode)
          ("\\.ts\\'" . jtsx-typescript-mode))
   :commands jtsx-install-treesit-language
