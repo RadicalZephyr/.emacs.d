@@ -50,6 +50,11 @@
 (use-package uwu-theme
   :ensure t
   :config
+  (set-face-attribute 'variable-pitch nil
+                      :family "Fira Sans" :height 120 :weight 'semibold)
+  (setq uwu-use-variable-pitch 1
+        uwu-scale-org-headlines 1
+        uwu-scale-outline-headlines 1)
   (load-theme 'uwu t))
 
 ;; Restore default theme
