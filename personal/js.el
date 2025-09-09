@@ -17,10 +17,6 @@
          (jtsx-typescript-mode . tide-hl-identifier-mode))
 
   :config
-  (flycheck-add-mode 'javascript-eslint 'jtsx-jsx-mode)
-  (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
-  (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode)
-
   (defun tide-bind-keys-to-mode-map (mode-map)
     "Bind useful keys to MODE-MAP"
     (define-key mode-map (kbd "C-c C-l d") 'tide-documentation-at-point)
@@ -65,6 +61,7 @@
   (jtsx-enable-all-syntax-highlighting-features t)
 
   :config
+  ;;; Configure ts-ls and eslint checkers to run sequentially
   ;; (defun radz/ts-lsp-plus-eslint ()
   ;;   ;; Always run ESLint *after* the LSP checker
   ;;   (flycheck-add-next-checker 'lsp 'javascript-eslint))

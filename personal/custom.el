@@ -12,6 +12,7 @@
    '(autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp spelling track truncate))
  '(exec-path-from-shell-variables '("PATH" "MANPATH" "LSP_USE_PLISTS"))
  '(flycheck-checker-error-threshold 600)
+ '(flycheck-idle-change-delay 1)
  '(lsp-rust-analyzer-import-granularity "crate")
  '(message-log-max 10000)
  '(package-selected-packages
