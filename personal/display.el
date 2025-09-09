@@ -47,11 +47,10 @@
 
 ;; theme setup!
 
-(use-package dracula-theme
+(use-package uwu-theme
   :ensure t
   :config
-  (disable-theme 'zenburn)
-  (load-theme 'dracula t))
+  (load-theme 'uwu t))
 
 ;; Restore default theme
 ;; (load-theme 'zenburn t)
