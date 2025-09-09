@@ -6,7 +6,10 @@
   (setq lsp-keymap-prefix "C-c C-l")
   :hook (;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp lsp-deferred))
+  :commands (lsp lsp-deferred)
+  :config
+  (setq read-process-output-max (* 1024 1024)
+        lsp-idle-delay 0.75))
 
 (use-package lsp-ui :commands lsp-ui-mode)
 

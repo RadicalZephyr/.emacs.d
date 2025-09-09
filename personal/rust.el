@@ -52,8 +52,6 @@
                         2 3 nil nil 1))))
 
 (defun radz-customize-rust-mode ()
-  (setq read-process-output-max (* 1024 1024)
-        lsp-idle-delay 0.75)
   (remove-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p))
 
 (add-hook 'rust-mode-hook #'radz-customize-rust-mode)
