@@ -19,11 +19,9 @@
 (ansi-color-for-comint-mode-on)
 (blink-cursor-mode 1)
 (setq
- default-tab-width           2
  uniquify-buffer-name-style 'post-forward-angle-brackets
  visible-bell                t
  x-stretch-cursor            t
- redisplay-dont-pause        nil
  )
 
 ;; Scrolling settings
