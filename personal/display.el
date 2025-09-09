@@ -1,3 +1,5 @@
+(require 'use-package)
+
 (when (window-system)
   (toggle-frame-maximized))
 
@@ -44,3 +46,14 @@
                 menu-bar-mode))
   (when (fboundp mode)
     (funcall mode -1)))
+
+;; theme setup!
+
+(use-package dracula-theme
+  :ensure t
+  :config
+  (disable-theme 'zenburn)
+  (load-theme 'dracula t))
+
+;; Restore default theme
+;; (load-theme 'zenburn t)
