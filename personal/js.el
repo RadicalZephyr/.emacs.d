@@ -64,6 +64,12 @@
   (jtsx-enable-all-syntax-highlighting-features t)
 
   :config
+  (defun radz/ts-lsp-plus-eslint ()
+    ;; Always run ESLint *after* the LSP checker
+    (flycheck-add-next-checker 'lsp 'javascript-eslint))
+  ;; Run this once LSP is managing the buffer
+  (add-hook 'lsp-mode-hook #'radz/ts-lsp-plus-eslint)
+
   (flycheck-add-mode 'javascript-eslint 'jtsx-jsx-mode)
   (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
   (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode)
