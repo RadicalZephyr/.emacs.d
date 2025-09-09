@@ -64,6 +64,10 @@
   (jtsx-enable-all-syntax-highlighting-features t)
 
   :config
+  (flycheck-add-mode 'javascript-eslint 'jtsx-jsx-mode)
+  (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
+  (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode)
+
   (defun jtsx-bind-keys-to-mode-map (mode-map)
     "Bind keys to MODE-MAP."
     (define-key mode-map (kbd "C-c C-j") 'jtsx-jump-jsx-element-tag-dwim)
