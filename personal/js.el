@@ -66,7 +66,10 @@
   :ensure t
   :after (flycheck)
   :config
-  (flycheck-jest-setup))
+  (flycheck-jest-setup)
+  (push 'jtsx-jsx-mode flycheck-jest-modes)
+  (push 'jtsx-typescript-mode flycheck-jest-modes)
+  (push 'jtsx-tsx-mode flycheck-jest-modes))
 
 (use-package jtsx
   :ensure t
