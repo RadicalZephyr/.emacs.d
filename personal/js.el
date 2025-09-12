@@ -17,6 +17,13 @@
          (jtsx-typescript-mode . tide-hl-identifier-mode))
 
   :config
+  (flycheck-add-mode 'javascript-tide 'jtsx-jsx-mode)
+  (flycheck-add-mode 'jsx-tide 'jtsx-jsx-mode)
+
+  (flycheck-add-mode 'typescript-tide 'jtsx-typescript-mode)
+  (flycheck-add-mode 'typescript-tide 'jtsx-tsx-mode)
+  (flycheck-add-mode 'tsx-tide 'jtsx-tsx-mode)
+
   (defun radz/tide-bind-keys-to-mode-map (mode-map)
     "Bind useful keys to MODE-MAP"
     (define-key mode-map (kbd "C-c C-l e") 'tide-refactor)
