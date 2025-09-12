@@ -24,6 +24,19 @@
   (flycheck-add-mode 'typescript-tide 'jtsx-tsx-mode)
   (flycheck-add-mode 'tsx-tide 'jtsx-tsx-mode)
 
+  (defun radz/tide-eslint-jest-chain ()
+    ;; Always run ESLint *after* the tide checker
+    (flycheck-add-next-checker 'javascript-tide 'javascript-eslint)
+    (flycheck-add-next-checker 'jsx-tide 'javascript-eslint)
+    (flycheck-add-next-checker 'typescript-tide 'javascript-eslint)
+    (flycheck-add-next-checker 'tsx-tide 'javascript-eslint)
+    (flycheck-add-next-checker 'javascript-eslint 'jest))
+
+  ;; Run this once LSP is managing the buffer
+  (add-hook 'jtsx-jsx-mode-hook 'radz/tide-eslint-jest-chain)
+  (add-hook 'jtsx-typescript-mode-hook 'radz/tide-eslint-jest-chain)
+  (add-hook 'jtsx-tsx-mode-hook 'radz/tide-eslint-jest-chain)
+
   (defun radz/tide-bind-keys-to-mode-map (mode-map)
     "Bind useful keys to MODE-MAP"
     (define-key mode-map (kbd "C-c C-l e") 'tide-refactor)
