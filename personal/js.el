@@ -24,18 +24,17 @@
   (flycheck-add-mode 'typescript-tide 'jtsx-tsx-mode)
   (flycheck-add-mode 'tsx-tide 'jtsx-tsx-mode)
 
-  (defun radz/tide-eslint-jest-chain ()
+  (defun radz/tide-eslint-chain ()
     ;; Always run ESLint *after* the tide checker
     (flycheck-add-next-checker 'javascript-tide 'javascript-eslint)
     (flycheck-add-next-checker 'jsx-tide 'javascript-eslint)
     (flycheck-add-next-checker 'typescript-tide 'javascript-eslint)
-    (flycheck-add-next-checker 'tsx-tide 'javascript-eslint)
-    (flycheck-add-next-checker 'javascript-eslint 'jest))
+    (flycheck-add-next-checker 'tsx-tide 'javascript-eslint))
 
   ;; Run this once LSP is managing the buffer
-  (add-hook 'jtsx-jsx-mode-hook 'radz/tide-eslint-jest-chain)
-  (add-hook 'jtsx-typescript-mode-hook 'radz/tide-eslint-jest-chain)
-  (add-hook 'jtsx-tsx-mode-hook 'radz/tide-eslint-jest-chain)
+  (add-hook 'jtsx-jsx-mode-hook 'radz/tide-eslint-chain)
+  (add-hook 'jtsx-typescript-mode-hook 'radz/tide-eslint-chain)
+  (add-hook 'jtsx-tsx-mode-hook 'radz/tide-eslint-chain)
 
   (defun radz/tide-bind-keys-to-mode-map (mode-map)
     "Bind useful keys to MODE-MAP"
@@ -62,18 +61,9 @@
   (add-hook 'jtsx-tsx-mode-hook
             'radz/tide-bind-keys-to-jtsx-tsx-mode-map))
 
-(use-package flycheck-jest
-  :ensure t
-  :after (flycheck)
-  :config
-  (flycheck-jest-setup)
-  (push 'jtsx-jsx-mode flycheck-jest-modes)
-  (push 'jtsx-typescript-mode flycheck-jest-modes)
-  (push 'jtsx-tsx-mode flycheck-jest-modes))
-
 (use-package jtsx
   :ensure t
-  :after (flycheck flycheck-jest)
+  :after (flycheck)
   :mode (("\\.[cm]jsx?\\'" . jtsx-jsx-mode)
          ("\\.tsx\\'" . jtsx-tsx-mode)
          ("\\.ts\\'" . jtsx-typescript-mode))
@@ -108,10 +98,6 @@
   (flycheck-add-mode 'javascript-eslint 'jtsx-jsx-mode)
   (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
   (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode)
-
-  (flycheck-add-mode 'jest 'jtsx-jsx-mode)
-  (flycheck-add-mode 'jest 'jtsx-typescript-mode)
-  (flycheck-add-mode 'jest 'jtsx-tsx-mode)
 
   (defun jtsx-bind-keys-to-mode-map (mode-map)
     "Bind keys to MODE-MAP."
