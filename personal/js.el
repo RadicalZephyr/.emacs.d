@@ -34,9 +34,15 @@
   (add-hook 'jtsx-tsx-mode-hook
             #'(lambda () (radz/tide-bind-keys-to-mode-map jtsx-tsx-mode-map))))
 
-(use-package jtsx
+(use-package flycheck-jest
   :ensure t
   :after (flycheck)
+  :config
+  (flycheck-jest-setup))
+
+(use-package jtsx
+  :ensure t
+  :after (flycheck flycheck-jest)
   :mode (("\\.[cm]jsx?\\'" . jtsx-jsx-mode)
          ("\\.tsx\\'" . jtsx-tsx-mode)
          ("\\.ts\\'" . jtsx-typescript-mode))
@@ -71,6 +77,10 @@
   (flycheck-add-mode 'javascript-eslint 'jtsx-jsx-mode)
   (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
   (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode)
+
+  (flycheck-add-mode 'jest 'jtsx-jsx-mode)
+  (flycheck-add-mode 'jest 'jtsx-typescript-mode)
+  (flycheck-add-mode 'jest 'jtsx-tsx-mode)
 
   (defun jtsx-bind-keys-to-mode-map (mode-map)
     "Bind keys to MODE-MAP."
