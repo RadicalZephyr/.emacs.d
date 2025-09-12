@@ -34,12 +34,20 @@
     (define-key mode-map (kbd "C-c C-l ?") 'tide-references)
     (define-key mode-map (kbd "C-c C-l x") 'tide-restart-server))
 
+  (defun radz/tide-bind-keys-to-jtsx-jsx-mode-map ()
+    (radz/tide-bind-keys-to-mode-map jtsx-jsx-mode-map))
   (add-hook 'jtsx-jsx-mode-hook
-            #'(lambda () (radz/tide-bind-keys-to-mode-map jtsx-jsx-mode-map)))
+            'radz/tide-bind-keys-to-jtsx-jsx-mode-map)
+
+  (defun radz/tide-bind-keys-to-jtsx-typescript-mode-map ()
+    (radz/tide-bind-keys-to-mode-map jtsx-typescript-mode-map))
   (add-hook 'jtsx-typescript-mode-hook
-            #'(lambda () (radz/tide-bind-keys-to-mode-map jtsx-typescript-mode-map)))
+            'radz/tide-bind-keys-to-jtsx-typescript-mode-map)
+
+  (defun radz/tide-bind-keys-to-jtsx-tsx-mode-map ()
+    (radz/tide-bind-keys-to-mode-map jtsx-tsx-mode-map))
   (add-hook 'jtsx-tsx-mode-hook
-            #'(lambda () (radz/tide-bind-keys-to-mode-map jtsx-tsx-mode-map))))
+            'radz/tide-bind-keys-to-jtsx-tsx-mode-map))
 
 (use-package flycheck-jest
   :ensure t
