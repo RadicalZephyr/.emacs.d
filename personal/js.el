@@ -99,6 +99,13 @@
   (flycheck-add-mode 'javascript-eslint 'jtsx-typescript-mode)
   (flycheck-add-mode 'javascript-eslint 'jtsx-tsx-mode)
 
+  (defun radz/jtsx-smart-parens-electric-integration (n)
+    (when (equal (char-after) ?>)
+      (delete-char 1)))
+
+  (advice-add 'jtsx-jsx-electric-closing-element :before #'radz/jtsx-smart-parens-electric-integration)
+  ;; (advice-remove 'jtsx-jsx-electric-closing-element #'radz/jtsx-smart-parens-electric-integration)
+
   (defun jtsx-bind-keys-to-mode-map (mode-map)
     "Bind keys to MODE-MAP."
     (define-key mode-map (kbd "C-c C-j") 'jtsx-jump-jsx-element-tag-dwim)
