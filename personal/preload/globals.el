@@ -8,6 +8,8 @@
 
 (setq home-dir (getenv "HOME"))
 
+(require 'package)
+
 (add-to-list 'package-archives
              '("non-gnu" . "https://elpa.nongnu.org/nongnu/"))
 
