@@ -18,10 +18,13 @@
    '(json-mode easy-kill doom-modeline nerd-icons-dired nerd-icons uwu-theme forge prettier-js wgsl-mode flycheck-gradle groovy-imports groovy-mode walkman npm conventional-changelog jtsx graphviz-dot-mode svelte-mode ox-hugo org-contrib ox-timeline ox-reveal ox-pandoc scss-mode sass-mode protobuf-mode ron-mode flx tramp counsel swiper flycheck-inline tide rg avy-flycheck racket-mode shen-mode slime-company lentic powershell handlebars-mode mustache-mode pipenv haskell-mode lua-mode elm-mode go-mode d-mode xclip salt-mode systemd csv-mode pytest nginx-mode dockerfile-mode elixir-mode fsharp-mode csharp-mode paradox gh-md gnuplot erefactor batch-mode aggressive-indent flycheck-color-mode-line flycheck-tip ess-smart-underscore ess ruby-refactor ruby-guard rubocop rspec-mode robe rinari rbenv php-mode flymake-php cmake-mode golden-ratio yatemplate clojure-snippets java-snippets markdown-mode+ markdown-mode clojure-cheatsheet cljsbuild-mode clj-refactor common-lisp-snippets slime exec-path-from-shell smart-tab paredit magit-filenotify color-theme toml-mode company-racer racer rustfmt rust-mode jasminejs-mode yaml-mode web-mode geiser yari inf-ruby ruby-tools company-anaconda anaconda-mode flycheck-ocaml merlin utop tuareg company-auctex cdlatex auctex js2-mode rainbow-mode elisp-slime-nav clojure-mode rainbow-delimiters company zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window))
  '(paradox-automatically-star t)
  '(safe-local-variable-values
-   '((tide-tsserver-executable . "node_modules/typescript/bin/tsserver")))
+   '((prettier-js-mode)
+     (typescript-ts-mode-indent-offset 2)
+     (tide-tsserver-executable . "node_modules/typescript/bin/tsserver")))
  '(search-whitespace-regexp "[ \11\15\15]+")
  '(typescript-indent-level 4)
- '(vhl/highlight-zero-width-ranges t))
+ '(vhl/highlight-zero-width-ranges t)
+ '(whitespace-line-column 95))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
