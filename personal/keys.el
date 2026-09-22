@@ -5,6 +5,7 @@
   :config
   (rg-enable-menu (kbd "C-c c s")))
 
+(global-set-key (kbd "C-x b") 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 (global-set-key (kbd "C-x o")   'ace-window)
 (global-set-key (kbd "C-x C-o") 'ace-window)
