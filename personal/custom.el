@@ -5,22 +5,48 @@
  ;; If there is more than one, they won't work right.
  '(cider-jack-in-auto-inject-clojure "1.8.0")
  '(custom-safe-themes
-   '("9fb561389e5ac5b9ead13a24fb4c2a3544910f67f12cfcfe77b75f36248017d0" "e11569fd7e31321a33358ee4b232c2d3cf05caccd90f896e1df6cab228191109" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default))
+   '("9fb561389e5ac5b9ead13a24fb4c2a3544910f67f12cfcfe77b75f36248017d0"
+     "e11569fd7e31321a33358ee4b232c2d3cf05caccd90f896e1df6cab228191109"
+     "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879"
+     default))
  '(dired-listing-switches "-alh")
  '(erc-modules
-   '(autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp spelling track truncate))
+   '(autojoin button completion fill irccontrols list match menu
+              move-to-prompt netsplit networks noncommands
+              notifications readonly ring stamp spelling track
+              truncate))
  '(exec-path-from-shell-variables '("PATH" "MANPATH" "LSP_USE_PLISTS"))
  '(flycheck-checker-error-threshold 600)
  '(flycheck-idle-change-delay 1)
  '(lsp-rust-analyzer-import-granularity "crate")
  '(message-log-max 10000)
  '(package-selected-packages
-   '(json-mode easy-kill doom-modeline nerd-icons-dired nerd-icons uwu-theme forge prettier-js wgsl-mode flycheck-gradle groovy-imports groovy-mode walkman npm conventional-changelog jtsx graphviz-dot-mode svelte-mode ox-hugo org-contrib ox-timeline ox-reveal ox-pandoc scss-mode sass-mode protobuf-mode ron-mode flx tramp counsel swiper flycheck-inline tide rg avy-flycheck racket-mode shen-mode slime-company lentic powershell handlebars-mode mustache-mode pipenv haskell-mode lua-mode elm-mode go-mode d-mode xclip salt-mode systemd csv-mode pytest nginx-mode dockerfile-mode elixir-mode fsharp-mode csharp-mode paradox gh-md gnuplot erefactor batch-mode aggressive-indent flycheck-color-mode-line flycheck-tip ess-smart-underscore ess ruby-refactor ruby-guard rubocop rspec-mode robe rinari rbenv php-mode flymake-php cmake-mode golden-ratio yatemplate clojure-snippets java-snippets markdown-mode+ markdown-mode clojure-cheatsheet cljsbuild-mode clj-refactor common-lisp-snippets slime exec-path-from-shell smart-tab paredit magit-filenotify color-theme toml-mode company-racer racer rustfmt rust-mode jasminejs-mode yaml-mode web-mode geiser yari inf-ruby ruby-tools company-anaconda anaconda-mode flycheck-ocaml merlin utop tuareg company-auctex cdlatex auctex js2-mode rainbow-mode elisp-slime-nav clojure-mode rainbow-delimiters company zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window))
+   '(ace-window ag aggressive-indent anzu browse-kill-ring cargo
+                clj-refactor cljsbuild-mode clojure-snippets
+                common-lisp-snippets company-anaconda company-racer
+                crux diff-hl diminish discover-my-major doom-modeline
+                easy-kill elisp-slime-nav epl erefactor
+                ess-smart-underscore exec-path-from-shell
+                expand-region flx-ido flycheck-color-mode-line
+                flycheck-inline flycheck-rust flycheck-tip flymake-php
+                fsharp-mode gh-md gist git-modes git-timemachine
+                gnuplot guru-mode hl-todo ido-completing-read+
+                imenu-anywhere java-snippets json-mode jtsx lentic
+                lsp-ui magit-filenotify move-text nerd-icons-dired
+                nginx-mode nlinum operate-on-number paradox php-mode
+                pipenv prettier-js projectile pytest racer racket-mode
+                rainbow-delimiters rainbow-mode rbenv rg rinari robe
+                ron-mode rspec-mode rubocop ruby-refactor ruby-tools
+                slime-company smart-tab smartparens smartrep smex
+                systemd tide toml-mode tree-sitter-langs undo-tree
+                uwu-theme volatile-highlights web-mode xclip
+                xterm-color yaml-mode yari yatemplate zenburn-theme
+                zop-to-char))
  '(paradox-automatically-star t)
  '(safe-local-variable-values
-   '((prettier-js-mode)
-     (typescript-ts-mode-indent-offset 2)
-     (tide-tsserver-executable . "node_modules/typescript/bin/tsserver")))
+   '((prettier-js-mode) (typescript-ts-mode-indent-offset 2)
+     (tide-tsserver-executable
+      . "node_modules/typescript/bin/tsserver")))
  '(search-whitespace-regexp "[ \11\15\15]+")
  '(typescript-indent-level 4)
  '(vhl/highlight-zero-width-ranges t)
