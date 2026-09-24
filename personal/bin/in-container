@@ -1,0 +1,55 @@
+#!/bin/sh
+# Run a tool in a distrobox, for Emacs.
+#
+# Invoked through a symlink at <shims>/<box>/<tool>: the directory names
+# the box and the link names the tool.  Like a `distrobox-export' wrapper,
+# except the tool dies with this process.  `podman exec' doesn't forward
+# signals, so without that a killed LSP server or an interrupted `cargo'
+# keeps running in the box.
+
+shims=$(dirname "$0")
+box=$(basename "$shims")
+tool=$(basename "$0")
+
+# Drop the shims from PATH, so the tool's own children (rust-analyzer
+# running cargo, say) find the real programs instead of coming back here.
+# Compare physical paths too, since /home is a symlink to /var/home.
+shims_physical=$(cd "$shims" && pwd -P)
+path=
+old_ifs=$IFS
+IFS=:
+for dir in $PATH; do
+	case $dir in
+	"$shims" | "$shims_physical") ;;
+	*) path=${path:+$path:}$dir ;;
+	esac
+done
+IFS=$old_ifs
+PATH=$path
+export PATH
+
+if [ -z "$CONTAINER_ID" ]; then
+	# On the host.  Inside the box, run the tool in its own process group
+	# and kill that group once this process is gone.  distrobox shares the
+	# host's PID namespace, so the box can see this PID.  Save stdin first:
+	# a background job's stdin is /dev/null.
+	exec distrobox-enter -n "$box" -- sh -c '
+		client=$1
+		shift
+		exec 3<&0
+		setsid "$@" <&3 3<&- &
+		pid=$!
+		exec 3<&-
+		(
+			while kill -0 "$client" && kill -0 "$pid"; do
+				sleep 1
+			done
+			kill -TERM -- "-$pid"
+		) </dev/null >/dev/null 2>&1 &
+		wait "$pid"
+	' in-container "$$" "$tool" "$@"
+elif [ "$CONTAINER_ID" = "$box" ]; then
+	exec "$tool" "$@"
+else
+	exec distrobox-host-exec "$0" "$@"
+fi
