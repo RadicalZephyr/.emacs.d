@@ -110,4 +110,72 @@
      (lambda (&optional directory) (setq seen (list directory default-directory))))
     (should (equal seen '(nil "/home/zefs/prog/")))))
 
+;; Loading distrobox.el syncs the real shims, just like starting Emacs.
+;; The tests below bind the shims directory to a temp dir.
+
+(defmacro radz-distrobox-test--with-shims (&rest body)
+  "Run BODY with the shims directory and allowlist bound to temp values."
+  (declare (indent 0))
+  `(let* ((radz-distrobox-shims-directory (make-temp-file "radz-shims" t))
+          (radz-distrobox-tools nil))
+     (unwind-protect
+         (progn ,@body)
+       (delete-directory radz-distrobox-shims-directory t))))
+
+(defun radz-distrobox-test--shims (box)
+  "Return BOX's shims as a sorted list of (TOOL . TARGET)."
+  (let ((dir (radz-distrobox-shim-directory box)))
+    (when (file-directory-p dir)
+      (mapcar (lambda (f) (cons f (file-symlink-p (expand-file-name f dir))))
+              (directory-files dir nil "\\`[^.]")))))
+
+(ert-deftest radz-distrobox-shim-directory/is-under-shims-directory ()
+  (let ((radz-distrobox-shims-directory "/shims"))
+    (should (equal (radz-distrobox-shim-directory "dev") "/shims/dev/"))))
+
+(ert-deftest radz-distrobox-sync-shims/links-each-tool-to-the-script ()
+  (radz-distrobox-test--with-shims
+    (setq radz-distrobox-tools '(("dev" "cargo" "rustfmt") ("bwapi" "clang")))
+    (radz-distrobox-sync-shims)
+    (should (equal (radz-distrobox-test--shims "dev")
+                   `(("cargo" . ,radz-distrobox-shim-script)
+                     ("rustfmt" . ,radz-distrobox-shim-script))))
+    (should (equal (radz-distrobox-test--shims "bwapi")
+                   `(("clang" . ,radz-distrobox-shim-script))))))
+
+(ert-deftest radz-distrobox-sync-shims/is-idempotent ()
+  (radz-distrobox-test--with-shims
+    (setq radz-distrobox-tools '(("dev" "cargo")))
+    (radz-distrobox-sync-shims)
+    (radz-distrobox-sync-shims)
+    (should (equal (radz-distrobox-test--shims "dev")
+                   `(("cargo" . ,radz-distrobox-shim-script))))))
+
+(ert-deftest radz-distrobox-sync-shims/repoints-a-stale-link ()
+  (radz-distrobox-test--with-shims
+    (setq radz-distrobox-tools '(("dev" "cargo")))
+    (make-directory (radz-distrobox-shim-directory "dev") t)
+    (make-symbolic-link "/old/script" (expand-file-name "cargo" (radz-distrobox-shim-directory "dev")))
+    (radz-distrobox-sync-shims)
+    (should (equal (radz-distrobox-test--shims "dev")
+                   `(("cargo" . ,radz-distrobox-shim-script))))))
+
+(ert-deftest radz-distrobox-sync-shims/removes-dropped-tools-and-boxes ()
+  (radz-distrobox-test--with-shims
+    (setq radz-distrobox-tools '(("dev" "cargo" "rustfmt") ("bwapi" "clang")))
+    (radz-distrobox-sync-shims)
+    (setq radz-distrobox-tools '(("dev" "cargo")))
+    (radz-distrobox-sync-shims)
+    (should (equal (radz-distrobox-test--shims "dev")
+                   `(("cargo" . ,radz-distrobox-shim-script))))
+    (should-not (file-exists-p (radz-distrobox-shim-directory "bwapi")))))
+
+(ert-deftest radz-distrobox-sync-shims/leaves-other-files-alone ()
+  (radz-distrobox-test--with-shims
+    (let ((dir (radz-distrobox-shim-directory "gone")))
+      (make-directory dir t)
+      (write-region "" nil (expand-file-name "notes" dir))
+      (radz-distrobox-sync-shims)
+      (should (file-exists-p (expand-file-name "notes" dir))))))
+
 ;;; distrobox-test.el ends here

@@ -96,3 +96,48 @@ Git over TRAMP is slow, and commit signing only works on the host."
     (apply fn (and directory (radz-container-local-name directory)) args)))
 
 (advice-add 'magit-status :around #'radz-magit-status-locally)
+
+(defconst radz-distrobox-shim-script
+  (expand-file-name "bin/in-container" (file-name-directory (or load-file-name buffer-file-name)))
+  "Script every shim links to.  It runs the tool in the shim's box.")
+
+(defvar radz-distrobox-shims-directory
+  (expand-file-name ".distrobox-shims" (file-name-directory (or load-file-name buffer-file-name)))
+  "Directory holding one subdirectory of shims per box.")
+
+(defcustom radz-distrobox-tools nil
+  "Alist mapping each distrobox to the tools Emacs runs inside it.
+Only these get shims, so anything else, git in particular, runs on
+the host.  Call `radz-distrobox-sync-shims' after changing it."
+  :type '(alist :key-type (string :tag "Box") :value-type (repeat (string :tag "Tool")))
+  :group 'tramp)
+
+(defun radz-distrobox-shim-directory (box)
+  "Return the directory of shims for BOX."
+  (file-name-as-directory (expand-file-name box radz-distrobox-shims-directory)))
+
+(defun radz-distrobox-sync-shims ()
+  "Make the shims in `radz-distrobox-shims-directory' match `radz-distrobox-tools'.
+Only symlinks are removed, and a box's directory only once it's empty."
+  (dolist (entry radz-distrobox-tools)
+    (let ((dir (radz-distrobox-shim-directory (car entry))))
+      (make-directory dir t)
+      (dolist (tool (cdr entry))
+        (let ((link (expand-file-name tool dir)))
+          (unless (equal (file-symlink-p link) radz-distrobox-shim-script)
+            (make-symbolic-link radz-distrobox-shim-script link t))))))
+  (when (file-directory-p radz-distrobox-shims-directory)
+    (dolist (dir (directory-files radz-distrobox-shims-directory t "\\`[^.]"))
+      (when (file-directory-p dir)
+        (let ((tools (cdr (assoc (file-name-nondirectory dir) radz-distrobox-tools))))
+          (dolist (link (directory-files dir t "\\`[^.]"))
+            (when (and (file-symlink-p link)
+                       (not (member (file-name-nondirectory link) tools)))
+              (delete-file link)))
+          (unless (directory-files dir nil "\\`[^.]")
+            (delete-directory dir)))))))
+
+(setopt radz-distrobox-tools
+        '(("dev" "rust-analyzer" "cargo" "rustfmt")))
+
+(radz-distrobox-sync-shims)
