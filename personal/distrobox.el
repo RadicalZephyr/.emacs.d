@@ -71,7 +71,8 @@ Only symlinks are removed, and a box's directory only once it's empty."
             (delete-directory dir)))))))
 
 (setopt radz-distrobox-tools
-        '(("dev" "rust-analyzer" "cargo" "rustfmt")))
+        '(("dev" "rust-analyzer" "cargo" "rustfmt")
+          ("bwapi" "cmake" "ctest" "ninja" "make" "clangd" "gdb")))
 
 (radz-distrobox-sync-shims)
 
