@@ -141,3 +141,29 @@ Only symlinks are removed, and a box's directory only once it's empty."
         '(("dev" "rust-analyzer" "cargo" "rustfmt")))
 
 (radz-distrobox-sync-shims)
+
+(defun radz-distrobox-path-with-shims (shims env)
+  "Return a copy of the process environment ENV with SHIMS first on PATH."
+  (let ((path (split-string (or (getenv-internal "PATH" env) "") path-separator t)))
+    (setenv-internal (copy-sequence env) "PATH"
+                     (string-join (cons shims (remove shims path)) path-separator)
+                     t)))
+
+(defun radz-distrobox-box-with-shims (directory)
+  "Return the box that DIRECTORY maps to, if it has shims.
+Remote directories never do: their processes don't run on the host."
+  (unless (file-remote-p directory)
+    (let ((box (radz-container-for-path directory radz-container-directory-alist)))
+      (and (assoc box radz-distrobox-tools) box))))
+
+(defun radz-distrobox-use-shims ()
+  "Run this buffer's processes through the shims of its box, if any.
+Sets `exec-path', which `make-process' and `executable-find' use, and
+PATH, which shell commands like `compile' use."
+  (when-let* ((box (radz-distrobox-box-with-shims default-directory)))
+    (let ((shims (directory-file-name (radz-distrobox-shim-directory box))))
+      (setq-local exec-path (cons shims (remove shims exec-path)))
+      (setq-local process-environment
+                  (radz-distrobox-path-with-shims shims process-environment)))))
+
+(add-hook 'after-change-major-mode-hook #'radz-distrobox-use-shims)

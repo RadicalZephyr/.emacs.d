@@ -178,4 +178,49 @@
       (radz-distrobox-sync-shims)
       (should (file-exists-p (expand-file-name "notes" dir))))))
 
+(ert-deftest radz-distrobox-path-with-shims/prepends-once ()
+  (let ((env '("HOME=/home/zefs" "PATH=/usr/bin:/shims:/bin")))
+    (should (equal (radz-distrobox-path-with-shims "/shims" env)
+                   '("HOME=/home/zefs" "PATH=/shims:/usr/bin:/bin")))
+    (should (equal env '("HOME=/home/zefs" "PATH=/usr/bin:/shims:/bin")))))
+
+(ert-deftest radz-distrobox-path-with-shims/adds-missing-path ()
+  (should (equal (getenv-internal "PATH" (radz-distrobox-path-with-shims "/shims" '("HOME=/h")))
+                 "/shims")))
+
+(defmacro radz-distrobox-test--in-buffer (directory &rest body)
+  "Run BODY in a temp buffer whose `default-directory' is DIRECTORY."
+  (declare (indent 1))
+  `(with-temp-buffer
+     (setq default-directory ,directory)
+     ,@body))
+
+(ert-deftest radz-distrobox-use-shims/sets-exec-path-and-path ()
+  (radz-container-test--with-tree
+    (let* ((radz-container-directory-alist `((,(expand-file-name "real/prog" root) . "dev")))
+           (radz-distrobox-tools '(("dev" "cargo")))
+           (radz-distrobox-shims-directory "/shims")
+           (exec-path '("/usr/bin"))
+           (process-environment '("PATH=/usr/bin")))
+      (radz-distrobox-test--in-buffer (expand-file-name "real/prog/" root)
+        (radz-distrobox-use-shims)
+        (radz-distrobox-use-shims)
+        (should (equal exec-path '("/shims/dev" "/usr/bin")))
+        (should (equal (getenv "PATH") "/shims/dev:/usr/bin")))
+      (should (equal exec-path '("/usr/bin"))))))
+
+(ert-deftest radz-distrobox-use-shims/leaves-other-buffers-alone ()
+  (radz-container-test--with-tree
+    (let ((radz-container-directory-alist `((,(expand-file-name "real/prog" root) . "dev")
+                                            (,(expand-file-name "real/programs" root) . "bare")))
+          (radz-distrobox-tools '(("dev" "cargo")))
+          (radz-distrobox-shims-directory "/shims"))
+      (dolist (dir (list "/etc/"
+                         (expand-file-name "real/programs/" root)
+                         (concat "/podman:zefs@dev:" (expand-file-name "real/prog/" root))))
+        (radz-distrobox-test--in-buffer dir
+          (radz-distrobox-use-shims)
+          (should-not (local-variable-p 'exec-path))
+          (should-not (local-variable-p 'process-environment)))))))
+
 ;;; distrobox-test.el ends here
