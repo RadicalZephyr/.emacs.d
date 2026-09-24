@@ -38,6 +38,11 @@ The longest directory containing a file wins.  Used by
   (expand-file-name ".distrobox-shims" (file-name-directory (or load-file-name buffer-file-name)))
   "Directory holding one subdirectory of shims per box.")
 
+(defvar radz-distrobox-shells-directory
+  (expand-file-name ".distrobox-shells" (file-name-directory (or load-file-name buffer-file-name)))
+  "Directory holding one subdirectory per box with an `sh' shim.
+Kept apart from the other shims so it's never on `exec-path'.")
+
 (defcustom radz-distrobox-tools nil
   "Alist mapping each distrobox to the tools Emacs runs inside it.
 Only these get shims, so anything else, git in particular, runs on
@@ -49,26 +54,38 @@ the host.  Call `radz-distrobox-sync-shims' after changing it."
   "Return the directory of shims for BOX."
   (file-name-as-directory (expand-file-name box radz-distrobox-shims-directory)))
 
-(defun radz-distrobox-sync-shims ()
-  "Make the shims in `radz-distrobox-shims-directory' match `radz-distrobox-tools'.
-Only symlinks are removed, and a box's directory only once it's empty."
-  (dolist (entry radz-distrobox-tools)
-    (let ((dir (radz-distrobox-shim-directory (car entry))))
+(defun radz-distrobox-shell (box)
+  "Return the `sh' shim that runs shell commands in BOX."
+  (expand-file-name (concat box "/sh") radz-distrobox-shells-directory))
+
+(defun radz-distrobox--sync-links (root alist)
+  "Make ROOT hold one directory per box in ALIST, linking its tools.
+ALIST maps boxes to tool names.  Only symlinks are removed, and a
+box's directory only once it's empty."
+  (dolist (entry alist)
+    (let ((dir (file-name-as-directory (expand-file-name (car entry) root))))
       (make-directory dir t)
       (dolist (tool (cdr entry))
         (let ((link (expand-file-name tool dir)))
           (unless (equal (file-symlink-p link) radz-distrobox-shim-script)
             (make-symbolic-link radz-distrobox-shim-script link t))))))
-  (when (file-directory-p radz-distrobox-shims-directory)
-    (dolist (dir (directory-files radz-distrobox-shims-directory t "\\`[^.]"))
+  (when (file-directory-p root)
+    (dolist (dir (directory-files root t "\\`[^.]"))
       (when (file-directory-p dir)
-        (let ((tools (cdr (assoc (file-name-nondirectory dir) radz-distrobox-tools))))
+        (let ((tools (cdr (assoc (file-name-nondirectory dir) alist))))
           (dolist (link (directory-files dir t "\\`[^.]"))
             (when (and (file-symlink-p link)
                        (not (member (file-name-nondirectory link) tools)))
               (delete-file link)))
           (unless (directory-files dir nil "\\`[^.]")
             (delete-directory dir)))))))
+
+(defun radz-distrobox-sync-shims ()
+  "Make the shims and shells on disk match `radz-distrobox-tools'."
+  (radz-distrobox--sync-links radz-distrobox-shims-directory radz-distrobox-tools)
+  (radz-distrobox--sync-links radz-distrobox-shells-directory
+                              (mapcar (lambda (entry) (list (car entry) "sh"))
+                                      radz-distrobox-tools)))
 
 (setopt radz-distrobox-tools
         '(("dev" "rust-analyzer" "cargo" "rustfmt")
@@ -99,3 +116,26 @@ PATH, which shell commands like `compile' use."
                   (radz-distrobox-path-with-shims shims process-environment)))))
 
 (add-hook 'after-change-major-mode-hook #'radz-distrobox-use-shims)
+
+(defun radz-distrobox-shell-in-box (fn &rest args)
+  "Around advice that runs FN's shell commands in the buffer's box.
+Only for commands where I type the shell command.  Packages that shell
+out themselves, like projectile and rg, stay on the host."
+  (let ((shell-file-name
+         (if-let* ((box (radz-distrobox-box-with-shims default-directory)))
+             (radz-distrobox-shell box)
+           shell-file-name)))
+    (apply fn args)))
+
+(defun radz-distrobox-typed-shell-in-box (fn &rest args)
+  "Like `radz-distrobox-shell-in-box', but only when I ran the command.
+`shell-command-to-string' calls `shell-command', and packages use it."
+  (if (memq this-command '(shell-command async-shell-command))
+      (apply #'radz-distrobox-shell-in-box fn args)
+    (apply fn args)))
+
+;; Packages call `compilation-start', not `compile', so no such check.
+(advice-add 'compile :around #'radz-distrobox-shell-in-box)
+(advice-add 'recompile :around #'radz-distrobox-shell-in-box)
+(advice-add 'shell-command :around #'radz-distrobox-typed-shell-in-box)
+(advice-add 'async-shell-command :around #'radz-distrobox-typed-shell-in-box)

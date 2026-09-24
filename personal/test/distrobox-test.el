@@ -76,10 +76,12 @@
   "Run BODY with the shims directory and allowlist bound to temp values."
   (declare (indent 0))
   `(let* ((radz-distrobox-shims-directory (make-temp-file "radz-shims" t))
+          (radz-distrobox-shells-directory (make-temp-file "radz-shells" t))
           (radz-distrobox-tools nil))
      (unwind-protect
          (progn ,@body)
-       (delete-directory radz-distrobox-shims-directory t))))
+       (delete-directory radz-distrobox-shims-directory t)
+       (delete-directory radz-distrobox-shells-directory t))))
 
 (defun radz-distrobox-test--shims (box)
   "Return BOX's shims as a sorted list of (TOOL . TARGET)."
@@ -181,5 +183,43 @@
           (radz-distrobox-use-shims)
           (should-not (local-variable-p 'exec-path))
           (should-not (local-variable-p 'process-environment)))))))
+
+(ert-deftest radz-distrobox-sync-shims/gives-each-box-a-shell ()
+  (radz-distrobox-test--with-shims
+    (setq radz-distrobox-tools '(("dev" "cargo") ("bwapi" "cmake")))
+    (radz-distrobox-sync-shims)
+    (should (equal (file-symlink-p (radz-distrobox-shell "dev")) radz-distrobox-shim-script))
+    (should (equal (file-symlink-p (radz-distrobox-shell "bwapi")) radz-distrobox-shim-script))
+    (should-not (member "sh" (mapcar #'car (radz-distrobox-test--shims "dev"))))
+    (setq radz-distrobox-tools '(("dev" "cargo")))
+    (radz-distrobox-sync-shims)
+    (should-not (file-exists-p (radz-distrobox-shell "bwapi")))))
+
+(ert-deftest radz-distrobox-shell-in-box/binds-the-box-shell ()
+  (radz-container-test--with-tree
+    (let ((radz-container-directory-alist `((,(expand-file-name "real/prog" root) . "dev")))
+          (radz-distrobox-tools '(("dev" "cargo")))
+          (radz-distrobox-shells-directory "/shells")
+          (shell-file-name "/bin/sh"))
+      (radz-distrobox-test--in-buffer (expand-file-name "real/prog/" root)
+        (should (equal (radz-distrobox-shell-in-box (lambda (x) (list x shell-file-name)) 1)
+                       '(1 "/shells/dev/sh"))))
+      (radz-distrobox-test--in-buffer (expand-file-name "real/programs/" root)
+        (should (equal (radz-distrobox-shell-in-box (lambda () shell-file-name))
+                       "/bin/sh"))))))
+
+(ert-deftest radz-distrobox-typed-shell-in-box/only-for-typed-commands ()
+  (radz-container-test--with-tree
+    (let ((radz-container-directory-alist `((,(expand-file-name "real/prog" root) . "dev")))
+          (radz-distrobox-tools '(("dev" "cargo")))
+          (radz-distrobox-shells-directory "/shells")
+          (shell-file-name "/bin/sh"))
+      (radz-distrobox-test--in-buffer (expand-file-name "real/prog/" root)
+        (let ((this-command 'shell-command))
+          (should (equal (radz-distrobox-typed-shell-in-box (lambda () shell-file-name))
+                         "/shells/dev/sh")))
+        (let ((this-command 'projectile-find-file))
+          (should (equal (radz-distrobox-typed-shell-in-box (lambda () shell-file-name))
+                         "/bin/sh")))))))
 
 ;;; distrobox-test.el ends here
