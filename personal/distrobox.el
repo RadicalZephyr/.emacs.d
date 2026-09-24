@@ -25,58 +25,16 @@ its local name; any other remote PATH never matches."
                   best-length (length dir)))))
       best)))
 
-(defun radz-container-tramp-path (path container)
-  "Return PATH as a TRAMP path into CONTAINER as the current user.
-A podman PATH is re-targeted at CONTAINER; any other remote PATH is
-returned unchanged."
-  (if (radz-container--foreign-remote-p path)
-      path
-    (format "/podman:%s@%s:%s" (user-login-name) container (file-local-name path))))
-
 (defcustom radz-container-directory-alist nil
-  "Alist mapping directories to the podman container to open files in.
+  "Alist mapping directories to the distrobox their tools run in.
 The longest directory containing a file wins.  Used by
-`radz-find-file-in-container'."
+`radz-distrobox-use-shims'."
   :type '(alist :key-type directory :value-type (string :tag "Container"))
   :group 'tramp)
 
 (setopt radz-container-directory-alist
         '(("~/prog" . "dev")
           ("~/prog/bwapi" . "bwapi")))
-
-(defun radz-container--podman (&rest args)
-  "Run podman locally with ARGS and return its output lines."
-  (let ((default-directory (expand-file-name "~/")))
-    (apply #'process-lines "podman" args)))
-
-(defun radz-container--ensure-running (container)
-  "Start CONTAINER if it isn't running."
-  (unless (equal (radz-container--podman "container" "inspect"
-                                         "--format" "{{.State.Running}}" container)
-                 '("true"))
-    (message "Starting container %s..." container)
-    (radz-container--podman "start" container)
-    (message "Starting container %s...done" container)))
-
-(defun radz-find-file-in-container (filename)
-  "Visit FILENAME in the container `radz-container-directory-alist' maps it to.
-Prompts for a container when no directory matches.  Remote files over
-anything but podman are visited with plain `find-file'."
-  (interactive
-   (list (let ((default-directory (file-local-name default-directory)))
-           (read-file-name "Find file in container: "))))
-  (if (radz-container--foreign-remote-p filename)
-      (find-file filename)
-    (let* ((local (expand-file-name (file-local-name filename)))
-           (container (or (radz-container-for-path local radz-container-directory-alist)
-                          (completing-read
-                           (format "Container for %s: " (abbreviate-file-name local))
-                           (radz-container--podman "ps" "-a" "--format" "{{.Names}}")
-                           nil t))))
-      (radz-container--ensure-running container)
-      (find-file (radz-container-tramp-path local container)))))
-
-(global-set-key (kbd "C-c c c") #'radz-find-file-in-container)
 
 (defun radz-container-local-name (path)
   "Return PATH without its podman TRAMP prefix.

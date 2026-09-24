@@ -75,18 +75,6 @@
                  (concat "/ssh:server:" (expand-file-name "real/prog/x.rs" root))
                  `((,(expand-file-name "real/prog" root) . "dev"))))))
 
-(ert-deftest radz-container-tramp-path/local-path ()
-  (should (equal (radz-container-tramp-path "/home/zefs/prog/x.rs" "dev")
-                 (format "/podman:%s@dev:/home/zefs/prog/x.rs" (user-login-name)))))
-
-(ert-deftest radz-container-tramp-path/podman-path-is-retargeted ()
-  (should (equal (radz-container-tramp-path "/podman:root@bwapi:/home/zefs/prog/x.rs" "dev")
-                 (format "/podman:%s@dev:/home/zefs/prog/x.rs" (user-login-name)))))
-
-(ert-deftest radz-container-tramp-path/other-remote-is-unchanged ()
-  (should (equal (radz-container-tramp-path "/ssh:server:/etc/hosts" "dev")
-                 "/ssh:server:/etc/hosts")))
-
 (ert-deftest radz-container-local-name/podman-path-becomes-local ()
   (should (equal (radz-container-local-name "/podman:zefs@dev:/home/zefs/prog/")
                  "/home/zefs/prog/")))
