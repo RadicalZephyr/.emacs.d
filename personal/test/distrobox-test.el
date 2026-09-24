@@ -62,41 +62,12 @@
                  "/etc/hosts"
                  `((,(expand-file-name "real/prog" root) . "dev"))))))
 
-(ert-deftest radz-container-for-path/podman-path-uses-local-name ()
+(ert-deftest radz-container-for-path/remote-never-matches ()
   (radz-container-test--with-tree
-    (should (equal (radz-container-for-path
-                    (concat "/podman:zefs@bwapi:" (expand-file-name "real/prog/x.rs" root))
-                    `((,(expand-file-name "real/prog" root) . "dev")))
-                   "dev"))))
-
-(ert-deftest radz-container-for-path/other-remote-never-matches ()
-  (radz-container-test--with-tree
-    (should-not (radz-container-for-path
-                 (concat "/ssh:server:" (expand-file-name "real/prog/x.rs" root))
-                 `((,(expand-file-name "real/prog" root) . "dev"))))))
-
-(ert-deftest radz-container-local-name/podman-path-becomes-local ()
-  (should (equal (radz-container-local-name "/podman:zefs@dev:/home/zefs/prog/")
-                 "/home/zefs/prog/")))
-
-(ert-deftest radz-container-local-name/other-paths-are-unchanged ()
-  (should (equal (radz-container-local-name "/home/zefs/prog/") "/home/zefs/prog/"))
-  (should (equal (radz-container-local-name "/ssh:server:/etc/") "/ssh:server:/etc/")))
-
-(ert-deftest radz-magit-status-locally/localizes-directory-and-default-directory ()
-  (let ((default-directory "/podman:zefs@dev:/home/zefs/prog/")
-        seen)
-    (radz-magit-status-locally
-     (lambda (&optional directory cache) (setq seen (list directory default-directory cache)))
-     "/podman:zefs@dev:/home/zefs/other/" 'cache)
-    (should (equal seen '("/home/zefs/other/" "/home/zefs/prog/" cache)))))
-
-(ert-deftest radz-magit-status-locally/nil-directory-stays-nil ()
-  (let ((default-directory "/podman:zefs@dev:/home/zefs/prog/")
-        seen)
-    (radz-magit-status-locally
-     (lambda (&optional directory) (setq seen (list directory default-directory))))
-    (should (equal seen '(nil "/home/zefs/prog/")))))
+    (dolist (prefix '("/ssh:server:" "/podman:zefs@dev:"))
+      (should-not (radz-container-for-path
+                   (concat prefix (expand-file-name "real/prog/x.rs" root))
+                   `((,(expand-file-name "real/prog" root) . "dev")))))))
 
 ;; Loading distrobox.el syncs the real shims, just like starting Emacs.
 ;; The tests below bind the shims directory to a temp dir.
