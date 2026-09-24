@@ -1,10 +1,10 @@
-;;; tramp-test.el --- Tests for personal/tramp.el  -*- lexical-binding: t; -*-
+;;; distrobox-test.el --- Tests for personal/distrobox.el  -*- lexical-binding: t; -*-
 
 ;; Run with:
-;;   emacs -Q --batch -l ert -l ~/.emacs.d/personal/test/tramp-test.el -f ert-run-tests-batch-and-exit
+;;   emacs -Q --batch -l ert -l ~/.emacs.d/personal/test/distrobox-test.el -f ert-run-tests-batch-and-exit
 
 (require 'ert)
-(load (expand-file-name "../tramp.el" (file-name-directory (or load-file-name buffer-file-name))) nil t)
+(load (expand-file-name "../distrobox.el" (file-name-directory (or load-file-name buffer-file-name))) nil t)
 
 (defmacro radz-container-test--with-tree (&rest body)
   "Run BODY with `root' bound to a temp dir holding real/ and link -> real."
@@ -110,4 +110,4 @@
      (lambda (&optional directory) (setq seen (list directory default-directory))))
     (should (equal seen '(nil "/home/zefs/prog/")))))
 
-;;; tramp-test.el ends here
+;;; distrobox-test.el ends here
