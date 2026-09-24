@@ -87,4 +87,27 @@
   (should (equal (radz-container-tramp-path "/ssh:server:/etc/hosts" "dev")
                  "/ssh:server:/etc/hosts")))
 
+(ert-deftest radz-container-local-name/podman-path-becomes-local ()
+  (should (equal (radz-container-local-name "/podman:zefs@dev:/home/zefs/prog/")
+                 "/home/zefs/prog/")))
+
+(ert-deftest radz-container-local-name/other-paths-are-unchanged ()
+  (should (equal (radz-container-local-name "/home/zefs/prog/") "/home/zefs/prog/"))
+  (should (equal (radz-container-local-name "/ssh:server:/etc/") "/ssh:server:/etc/")))
+
+(ert-deftest radz-magit-status-locally/localizes-directory-and-default-directory ()
+  (let ((default-directory "/podman:zefs@dev:/home/zefs/prog/")
+        seen)
+    (radz-magit-status-locally
+     (lambda (&optional directory cache) (setq seen (list directory default-directory cache)))
+     "/podman:zefs@dev:/home/zefs/other/" 'cache)
+    (should (equal seen '("/home/zefs/other/" "/home/zefs/prog/" cache)))))
+
+(ert-deftest radz-magit-status-locally/nil-directory-stays-nil ()
+  (let ((default-directory "/podman:zefs@dev:/home/zefs/prog/")
+        seen)
+    (radz-magit-status-locally
+     (lambda (&optional directory) (setq seen (list directory default-directory))))
+    (should (equal seen '(nil "/home/zefs/prog/")))))
+
 ;;; tramp-test.el ends here

@@ -77,3 +77,22 @@ anything but podman are visited with plain `find-file'."
       (find-file (radz-container-tramp-path local container)))))
 
 (global-set-key (kbd "C-c c c") #'radz-find-file-in-container)
+
+(defun radz-container-local-name (path)
+  "Return PATH without its podman TRAMP prefix.
+Any other PATH is returned unchanged.  This is safe because every
+container mounts the home directory at the same path."
+  (if (equal (file-remote-p path 'method) "podman")
+      (file-local-name path)
+    path))
+
+(defun radz-magit-status-locally (fn &optional directory &rest args)
+  "Around advice for `magit-status' that runs it on the host.
+Git over TRAMP is slow, and commit signing only works on the host."
+  (interactive (lambda (spec)
+                 (let ((default-directory (radz-container-local-name default-directory)))
+                   (advice-eval-interactive-spec spec))))
+  (let ((default-directory (radz-container-local-name default-directory)))
+    (apply fn (and directory (radz-container-local-name directory)) args)))
+
+(advice-add 'magit-status :around #'radz-magit-status-locally)
