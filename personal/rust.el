@@ -29,6 +29,8 @@
 (define-key rust-mode-map (kbd "C-c C-l e") #'lsp-rust-analyzer-expand-macro)
 (define-key rust-mode-map (kbd "C-c C-l r") #'lsp-rename)
 
+;; Remove rust-mode's `lsp' in favor of my `lsp-deferred'
+(remove-hook 'rust-mode-hook 'lsp)
 (add-hook 'rust-mode-hook #'lsp-deferred)
 
 (add-hook 'rust-mode-hook #'cargo-minor-mode)
