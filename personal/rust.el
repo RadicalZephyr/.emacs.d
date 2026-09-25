@@ -4,21 +4,16 @@
 
 ;;; Code:
 
-(prelude-require-packages '(rust-mode lsp-mode flycheck-rust flycheck-inline racer company-racer toml-mode))
+(prelude-require-packages '(rust-mode lsp-mode flycheck-rust flycheck-inline toml-mode))
 
 (require 'compile)
 (require 'cargo-process)
 (require 'rust-mode)
-(require 'racer)
 (require 'toml-mode)
 (require 'lsp-mode)
 (require 'lsp-rust)
 
-;; Racer setup
-
-(setq racer-cmd (concat home-dir "/.cargo/bin/racer")
-      racer-rust-src-path (concat home-dir "/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
-      rust-format-on-save t
+(setq rust-format-on-save t
       rust-rustfmt-bin "rustfmt"
       cargo-process--command-clippy "clippy"
       lsp-rust-analyzer-cargo-load-out-dirs-from-check t
@@ -38,8 +33,6 @@
 
 (add-hook 'rust-mode-hook #'cargo-minor-mode)
 (add-hook 'toml-mode-hook #'cargo-minor-mode)
-
-(add-hook 'racer-mode-hook #'company-mode)
 
 (eval-after-load 'compile
   '(progn
