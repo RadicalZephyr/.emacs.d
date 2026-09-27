@@ -227,4 +227,6 @@ Meant for use with all Lisp modes"
                     72)
    (set-frame-position frame 8 0)))
 
+(setq find-file-visit-truename t)
+
 ;;; settings.el ends here
