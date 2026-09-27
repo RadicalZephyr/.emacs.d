@@ -1,4 +1,5 @@
 (require 'use-package)
 
-(use-package forge
-  :after magit)
+;; (use-package forge
+;;   :ensure t
+;;   :after magit)

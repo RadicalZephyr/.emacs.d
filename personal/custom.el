@@ -29,7 +29,7 @@
                 ess-smart-underscore exec-path-from-shell
                 expand-region flx-ido flycheck-color-mode-line
                 flycheck-inline flycheck-rust flycheck-tip flymake-php
-                fsharp-mode gh-md gist git-modes git-timemachine
+                forge fsharp-mode gh-md gist git-modes git-timemachine
                 gnuplot guru-mode hl-todo ido-completing-read+
                 imenu-anywhere java-snippets json-mode jtsx lentic
                 lsp-ui magit-filenotify move-text nerd-icons-dired
