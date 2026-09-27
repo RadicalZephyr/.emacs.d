@@ -22,12 +22,9 @@
 
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 (define-key rust-mode-map (kbd "C-c C-c M-k") #'cargo-process-clippy)
-(define-key rust-mode-map (kbd "C-c C-c C-e") #'cargo-process-current-file-expand)
+(define-key rust-mode-map (kbd "C-c C-c e") #'cargo-process-current-file-expand)
 (define-key rust-mode-map (kbd "C-c C-c M-e") #'cargo-process-current-file-expand-and-compile)
 
-(define-key rust-mode-map (kbd "C-c C-l d") #'lsp-execute-code-action)
-(define-key rust-mode-map (kbd "C-c C-l e") #'lsp-rust-analyzer-expand-macro)
-(define-key rust-mode-map (kbd "C-c C-l r") #'lsp-rename)
 
 ;; Remove rust-mode's `lsp' in favor of my `lsp-deferred'
 (remove-hook 'rust-mode-hook 'lsp)
