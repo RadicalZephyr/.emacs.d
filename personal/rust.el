@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(rust-mode lsp-mode flycheck-rust flycheck-inline toml-mode))
+(prelude-require-packages '(lsp-mode flycheck-inline toml-mode))
 
 (require 'compile)
 (require 'cargo-process)
@@ -13,24 +13,19 @@
 (require 'lsp-mode)
 (require 'lsp-rust)
 
-(setq rust-format-on-save t
-      rust-rustfmt-bin "rustfmt"
+(setq rust-rustfmt-bin "rustfmt"
       cargo-process--command-clippy "clippy"
-      lsp-rust-analyzer-cargo-load-out-dirs-from-check t
-      lsp-rust-analyzer-cargo-watch-command "clippy"
-      lsp-rust-analyzer-proc-macro-enable t)
+      lsp-rust-analyzer-cargo-watch-command "clippy")
 
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 (define-key rust-mode-map (kbd "C-c C-c M-k") #'cargo-process-clippy)
 (define-key rust-mode-map (kbd "C-c C-c e") #'cargo-process-current-file-expand)
 (define-key rust-mode-map (kbd "C-c C-c M-e") #'cargo-process-current-file-expand-and-compile)
 
-
 ;; Remove rust-mode's `lsp' in favor of my `lsp-deferred'
 (remove-hook 'rust-mode-hook 'lsp)
 (add-hook 'rust-mode-hook #'lsp-deferred)
 
-(add-hook 'rust-mode-hook #'cargo-minor-mode)
 (add-hook 'toml-mode-hook #'cargo-minor-mode)
 
 (eval-after-load 'compile
@@ -42,11 +37,6 @@
                   (list 'cargo
                         "', \\(\\([^:]+\\):\\([0-9]+\\)\\)"
                         2 3 nil nil 1))))
-
-(defun radz-customize-rust-mode ()
-  (remove-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p))
-
-(add-hook 'rust-mode-hook #'radz-customize-rust-mode)
 
 (defun radz-colorize-cargo-output ()
   (let ((inhibit-read-only t))
